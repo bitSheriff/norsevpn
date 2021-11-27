@@ -1,5 +1,7 @@
 import os, sys, string
 
+import lib.general as general
+
 ##
 # @brief Class for the NordVPN Cli functions
 class nordvpn():
@@ -14,7 +16,7 @@ class nordvpn():
     # @retval   True    nordvpn is installed
     def checkInstall(self):
         installed = False
-        res = self.__getOSString("nordvpn -v")
+        res = general.getOSString("nordvpn -v")
         if "NordVPN Version" in res:
             installed = True
         return installed
@@ -28,7 +30,7 @@ class nordvpn():
     # @retval   True    nordvpn is connected
     def isConnected(self):
         connected = False
-        res = self.__getOSString("nordvpn status")
+        res = general.getOSString("nordvpn status")
         if "Connected" in res:
             connected = True
         return connected
@@ -43,7 +45,7 @@ class nordvpn():
     # @param    cnt    Wanted country
     # @param    cty    Wanted city
     def connect(self, cnt="", cty=""):
-        self.__getOSString("nordvpn c " + cnt + "" + cty)
+        general.getOSString("nordvpn c " + cnt + "" + cty)
         return
 
     ## 
@@ -51,14 +53,5 @@ class nordvpn():
     # @brief    Disconnect from the vpn
     # @details  This interface is used to disconnect the nordvpn server. 
     def disconnect(self):
-        self.__getOSString("nordvpn d")
+        general.getOSString("nordvpn d")
         return
-
-    ## 
-    # @private
-    # @brief    Get string from a OS command
-    #
-    # @returns  Returns the string wich the OS returned on the stdout
-    def __getOSString(cmnd):
-        call = os.popen(cmnd, 'r')
-        return call.read()

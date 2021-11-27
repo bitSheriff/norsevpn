@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QFil
 
 sys.path.append("..")
 from lib.nordvpn import nordvpn as nordvpn
-
+from lib.conf import configManager
 
 # UI file
 uiFile = "vizu/norsevpn.ui"
@@ -20,9 +20,13 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # private vars
     __isConnected = False
 
+
+
+
     ##
+    # @public
     # @brief    Init
-    # @details  TODO
+    # @details  Initialization of the class
     #
     # @param    self    Object itself
     def __init__(self):
@@ -31,24 +35,34 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
 
-        # QTimer for the GUI updater
-        self.timer = QtCore.QTimer(self)
-        self.timer.setInterval(1000) # time in ms
-        self.timer.timeout.connect(self.update)
-        self.timer.start()
+        # init timer for periodical calls
+        self.__init_timer()
 
         # button initalization
         self.btn_connect.clicked.connect(self.__btnConnect)
+        self.btn_debug.clicked.connect(self.__debug)
 
         print("Installed: " + str(nordvpn.checkInstall(nordvpn)))
         print("Connected: " + str(nordvpn.isConnected(nordvpn)))
 
     ##
     # @private
+    # @brief    Init Timer
+    # @details  This private method is used to initialize the timers for the periodical calls
+    def __init_timer(self):
+        # QTimer for the GUI updater
+        self.timer = QtCore.QTimer(self)
+        self.timer.setInterval(1000) # time in ms
+        self.timer.timeout.connect(self.__update)
+        self.timer.start()
+
+
+    ##
+    # @private
     # @brief    Updater
     # @details  This private method is called periodically by the QTimer
     @QtCore.pyqtSlot()
-    def update(self):
+    def __update(self):
         # update the private variable
         self.__isConnected = nordvpn.isConnected(nordvpn)
 
@@ -72,4 +86,8 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             nordvpn.connect(nordvpn)
 
-
+    def __debug(self):
+        print("Debug")
+        print(configManager.updateLocations(configManager))
+        print("Debug 2")
+        print(configManager.getCities(configManager, "United_States"))

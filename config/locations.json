@@ -1,0 +1,319 @@
+{
+    "Albania": [
+        [
+            "Tirana"
+        ]
+    ],
+    "Argentina": [
+        [
+            "Buenos_Aires"
+        ]
+    ],
+    "Australia": [
+        [
+            "Adelaide",
+            "Brisbane",
+            "Melbourne",
+            "Perth",
+            "Sydney"
+        ]
+    ],
+    "Austria": [
+        [
+            "Vienna"
+        ]
+    ],
+    "Belgium": [
+        [
+            "Brussels"
+        ]
+    ],
+    "Bosnia_And_Herzegovina": [
+        [
+            "Sarajevo"
+        ]
+    ],
+    "Brazil": [
+        [
+            "San_Paulo"
+        ]
+    ],
+    "Bulgaria": [
+        [
+            "Sofia"
+        ]
+    ],
+    "Canada": [
+        [
+            "Montreal",
+            "Toronto",
+            "Vancouver"
+        ]
+    ],
+    "Chile": [
+        [
+            "Santiago"
+        ]
+    ],
+    "Costa_Rica": [
+        [
+            "San_Jose"
+        ]
+    ],
+    "Croatia": [
+        [
+            "Zagreb"
+        ]
+    ],
+    "Cyprus": [
+        [
+            "Nicosia"
+        ]
+    ],
+    "Czech_Republic": [
+        [
+            "Prague"
+        ]
+    ],
+    "Denmark": [
+        [
+            "Copenhagen"
+        ]
+    ],
+    "Estonia": [
+        [
+            "Tallinn"
+        ]
+    ],
+    "Finland": [
+        [
+            "Helsinki"
+        ]
+    ],
+    "France": [
+        [
+            "Marseille",
+            "Paris"
+        ]
+    ],
+    "Georgia": [
+        [
+            "Tbilisi"
+        ]
+    ],
+    "Germany": [
+        [
+            "Berlin",
+            "Frankfurt"
+        ]
+    ],
+    "Greece": [
+        [
+            "Athens"
+        ]
+    ],
+    "Hong_Kong": [
+        [
+            "Hong_Kong"
+        ]
+    ],
+    "Hungary": [
+        [
+            "Budapest"
+        ]
+    ],
+    "Iceland": [
+        [
+            "Reykjavik"
+        ]
+    ],
+    "India": [
+        [
+            "Mumbai"
+        ]
+    ],
+    "Indonesia": [
+        [
+            "Jakarta"
+        ]
+    ],
+    "Ireland": [
+        [
+            "Dublin"
+        ]
+    ],
+    "Israel": [
+        [
+            "Tel_Aviv"
+        ]
+    ],
+    "Italy": [
+        [
+            "Milan"
+        ]
+    ],
+    "Japan": [
+        [
+            "Tokyo"
+        ]
+    ],
+    "Latvia": [
+        [
+            "Riga"
+        ]
+    ],
+    "Lithuania": [
+        [
+            "Vilnius"
+        ]
+    ],
+    "Luxembourg": [
+        [
+            "Steinsel"
+        ]
+    ],
+    "Malaysia": [
+        [
+            "Kuala_Lumpur"
+        ]
+    ],
+    "Mexico": [
+        [
+            "Mexico"
+        ]
+    ],
+    "Moldova": [
+        [
+            "Chisinau"
+        ]
+    ],
+    "Netherlands": [
+        [
+            "Amsterdam"
+        ]
+    ],
+    "New_Zealand": [
+        [
+            "Auckland"
+        ]
+    ],
+    "North_Macedonia": [
+        [
+            "Skopje"
+        ]
+    ],
+    "Norway": [
+        [
+            "Oslo"
+        ]
+    ],
+    "Poland": [
+        [
+            "Warsaw"
+        ]
+    ],
+    "Portugal": [
+        [
+            "Lisbon"
+        ]
+    ],
+    "Romania": [
+        [
+            "Bucharest"
+        ]
+    ],
+    "Serbia": [
+        [
+            "Belgrade"
+        ]
+    ],
+    "Singapore": [
+        [
+            "Singapore"
+        ]
+    ],
+    "Slovakia": [
+        [
+            "Bratislava"
+        ]
+    ],
+    "Slovenia": [
+        [
+            "Ljubljana"
+        ]
+    ],
+    "South_Africa": [
+        [
+            "Johannesburg"
+        ]
+    ],
+    "South_Korea": [
+        [
+            "Seoul"
+        ]
+    ],
+    "Spain": [
+        [
+            "Madrid"
+        ]
+    ],
+    "Sweden": [
+        [
+            "Stockholm"
+        ]
+    ],
+    "Switzerland": [
+        [
+            "Zurich"
+        ]
+    ],
+    "Taiwan": [
+        [
+            "Taipei"
+        ]
+    ],
+    "Thailand": [
+        [
+            "Bangkok"
+        ]
+    ],
+    "Turkey": [
+        [
+            "Istanbul"
+        ]
+    ],
+    "Ukraine": [
+        [
+            "Kiev"
+        ]
+    ],
+    "United_Kingdom": [
+        [
+            "London"
+        ]
+    ],
+    "United_States": [
+        [
+            "Atlanta",
+            "Charlotte",
+            "Dallas",
+            "Los_Angeles",
+            "Miami",
+            "Phoenix",
+            "Salt_Lake_City",
+            "Seattle",
+            "Buffalo",
+            "Chicago",
+            "Denver",
+            "Manassas",
+            "New_York",
+            "Saint_Louis",
+            "San_Francisco"
+        ]
+    ],
+    "Vietnam": [
+        [
+            "Hanoi"
+        ]
+    ]
+}
