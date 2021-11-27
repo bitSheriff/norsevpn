@@ -4,4 +4,4 @@ html:
 
 .PHONY: clean
 clean:
-	rm -rf doc/output
+	rm -rf doc/_output

@@ -8,14 +8,13 @@ from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QFil
 
 # own modules and libs
 #import vizu.norseVPNGUIWindow as norseVPNGUIWindow
-from vizu import vizu
-
+import vizu.norseVPNGUIWindow as norseVPNGUIWindow
 ##
 # @brief    Main Call
 # @details  TODO
 if __name__ == "__main__":
     """! Initializes the program."""
     app = QtWidgets.QApplication(sys.argv)
-    window = norseVPNGUIWindow()
+    window = norseVPNGUIWindow.norseVPNGUIWindow()
     window.show()
     sys.exit(app.exec_())
