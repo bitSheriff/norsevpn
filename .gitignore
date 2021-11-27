@@ -1,6 +1,5 @@
 # Environments
 .venv
-*/__pycache__/*
-
+**/__pycache__/*
 # Documentation 
 /doc/_output
