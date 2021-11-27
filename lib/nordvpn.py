@@ -43,8 +43,16 @@ class nordvpn():
     # @param    cnt    Wanted country
     # @param    cty    Wanted city
     def connect(self, cnt="", cty=""):
+        self.__getOSString("nordvpn c " + cnt + "" + cty)
         return
 
+    ## 
+    # @public
+    # @brief    Disconnect from the vpn
+    # @details  This interface is used to disconnect the nordvpn server. 
+    def disconnect(self):
+        self.__getOSString("nordvpn d")
+        return
 
     ## 
     # @private
