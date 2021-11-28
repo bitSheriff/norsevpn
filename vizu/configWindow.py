@@ -1,7 +1,7 @@
 
 import os
 import sys
-from PyQt5.QtWidgets import QLabel, QVBoxLayout, QWidget, QCheckBox
+from PyQt5.QtWidgets import QLabel, QMessageBox, QVBoxLayout, QWidget, QCheckBox
 from PyQt5 import QtCore, uic
 
 sys.path.append("..")
@@ -61,6 +61,22 @@ class configWindow(QWidget):
     ##
     # @private
     # @brief    Close Window
-    # @details  Internal method to close the widget
-    def __btn_close(self):
-        self.close()
+    # @details  Internal method to close the widget.
+    #           The user can decide if the configuration should be saved, just closed
+    #           or return to the config window.
+    def __btn_close(self, event):
+        # show message to get if the user wants to save
+        reply = QMessageBox.question(
+            self, "Message",
+            "Are you sure you want to quit? Any unsaved work will be lost.",
+            QMessageBox.Save | QMessageBox.Close | QMessageBox.Cancel,
+            QMessageBox.Save)
+
+        # get the user input
+        if reply == QMessageBox.Close:
+            self.close()
+        elif reply == QMessageBox.Save:
+            self.saveConfig()
+            self.close
+        else:
+            pass
