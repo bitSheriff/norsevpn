@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QFil
 sys.path.append("..")
 from lib.nordvpn import nordvpn as nordvpn
 from lib.conf import configManager
+from vizu.configWindow import configWindow
 
 # UI file
 uiFile = "vizu/norsevpn.ui"
@@ -33,14 +34,16 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # create the instance of the Qt window
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
+        self.configWidget = configWindow()
         self.setupUi(self)
 
         # init timer for periodical calls
         self.__init_timer()
 
-        # button initalization
+        # button initialization
         self.btn_connect.clicked.connect(self.__btnConnect)
         self.btn_debug.clicked.connect(self.__debug)
+        self.btn_config.clicked.connect(self.__btnConfig)
 
         print("Installed: " + str(nordvpn.checkInstall(nordvpn)))
         print("Connected: " + str(nordvpn.isConnected(nordvpn)))
@@ -86,8 +89,12 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             nordvpn.connect(nordvpn)
 
+    def __btnConfig(self):
+        self.configWidget.onShow()
+
     def __debug(self):
         print("Debug")
         print(configManager.updateLocations(configManager))
         print("Debug 2")
         print(configManager.getCities(configManager, "United_States"))
+
