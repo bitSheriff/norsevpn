@@ -1,8 +1,7 @@
-
 # imports
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
-from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QFileDialog, QCheckBox
+from PyQt5.QtWidgets import QApplication, QMessageBox, QWidget, QInputDialog, QLineEdit, QFileDialog, QCheckBox
 
 sys.path.append("..")
 from lib.nordvpn import nordvpn as nordvpn
@@ -76,6 +75,31 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.btn_connect.setText("Disconnect")
         else:
             self.btn_connect.setText("Connect")
+
+    ##
+    # @private
+    # @overload closeEvent
+    # @brief    Close Window
+    # @details  Internal method to close the widget.
+    #           If the window should close, the vpn connection gets disconnected.
+    def closeEvent(self, event):
+        # show message to get if the user wants to save
+        reply = QMessageBox.question(
+            self, "Message",
+            "Are you sure you want to quit? VPN will disconnect.",
+            QMessageBox.Close | QMessageBox.Cancel,
+            QMessageBox.Cancel)
+
+        # get the user input
+        if reply == QMessageBox.Close:
+            nordvpn.disconnect(nordvpn)     # disconnect the vpn
+            # close all sub windows and this window
+            if self.configWidget.isVisible():
+                self.configWidget.close()
+            self.close()
+        else:
+            event.ignore()
+            pass
 
     ##
     # @private
