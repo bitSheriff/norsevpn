@@ -23,6 +23,16 @@ class configWindow(QWidget):
         super(configWindow, self).__init__()
         uic.loadUi(uiFile, self)
 
+        # simulate toggleSwitch like handling
+        self.slid_firewall.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.slid_firewall))
+        self.slid_killSwitch.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.slid_killSwitch))
+        self.slid_cyberSec.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.slid_cyberSec))
+        self.slid_obfuscate.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.slid_obfuscate))
+        self.slid_notify.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.slid_notify))
+        self.slid_autoConnect.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.slid_autoConnect))
+        self.slid_ipv6.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.slid_ipv6))
+        self.slid_dns.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.slid_dns))
+        # button setup
         self.btn_close.clicked.connect(self.closeEvent)
         self.btn_save.clicked.connect(self.saveConfig)
 
@@ -115,10 +125,23 @@ class configWindow(QWidget):
             pass
 
     ##
+    # @private
     # @brief    Get Value from string
     def __getSetting(self, sliderVal):
         if sliderVal > 0:
             return True
         else:
             return False
+
+    ##
+    # @private
+    # @brief    Toggle Slider
+    # @details  This private function is used to simulate a toggeling action.
+    #           So it switches between 0 and 1.
+    def __toggleSlider(self, slid):
+        if slid.value() == 0:
+            slid.setValue(1)
+        else:
+            slid.setValue(0)
+
 
