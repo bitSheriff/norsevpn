@@ -26,17 +26,24 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>736</x>
       <y>10</y>
-      <width>90</width>
+      <width>40</width>
       <height>23</height>
      </rect>
     </property>
     <property name="toolTip">
      <string>checked you are currently connected to a vpn</string>
     </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
     <property name="text">
-     <string>connected</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>icons/white_link.svg</normaloff>icons/white_link.svg</iconset>
     </property>
     <property name="checkable">
      <bool>true</bool>
@@ -71,20 +78,24 @@
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Debug</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_config">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>752</x>
       <y>40</y>
-      <width>83</width>
+      <width>31</width>
       <height>25</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>icons/white_settings.svg</normaloff>icons/white_settings.svg</iconset>
     </property>
    </widget>
   </widget>
