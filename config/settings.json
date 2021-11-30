@@ -1,0 +1,10 @@
+{
+    "autoConnect": false,
+    "cyberSec": true,
+    "dns": false,
+    "firewall": false,
+    "ipv6": false,
+    "killSwitch": true,
+    "notify": false,
+    "obfuscate": false
+}
