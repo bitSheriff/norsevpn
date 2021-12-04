@@ -1,4 +1,5 @@
 # imports
+import logging
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtWidgets import QApplication, QMessageBox, QTreeWidgetItem, QWidget, QInputDialog, QLineEdit, QFileDialog, QCheckBox
@@ -48,8 +49,8 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         configManager.updateLocations(configManager)    # update the locations inside the json
         self.__fillLocationTree()
 
-        print("Installed: " + str(nordvpn.checkInstall(nordvpn)))
-        print("Connected: " + str(nordvpn.isConnected(nordvpn)))
+        logging.info("Installed: " + str(nordvpn.checkInstall(nordvpn)))
+        logging.info("Connected: " + str(nordvpn.isConnected(nordvpn)))
 
     ##
     # @private
@@ -134,8 +135,8 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.configWidget.onShow()
 
     def __debug(self):
-        print("Debug")
-        print(configManager.updateLocations(configManager))
+        logging.info("Debug")
+        logging.info(configManager.updateLocations(configManager))
     
     def __updateTextBrowser(self):
         htmlText = nordvpn.getStatus(nordvpn)
@@ -166,7 +167,6 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             cnt = par.text(0)
             cty = item.text(0)
-        print("Country: " + cnt + " City: " + cty)
         configManager.setConfig(configManager, "selected_country",cnt)
         configManager.setConfig(configManager, "selected_city",cty)
         if self.__isConnected:
@@ -177,7 +177,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.__cooldownStart()
 
     def __cooldownStart(self):
-        print("Cooldown Start")
+        logging.info("Cooldown Start")
         self.cooldownTimer.start()
 
         # disable interactions
@@ -185,7 +185,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_connect.setDisabled(True)
 
     def __cooldownEnd(self):
-        print("CoolDown End")
+        logging.info("CoolDown End")
 
         # Enable all interactions again
         self.tree_location.setDisabled(False)

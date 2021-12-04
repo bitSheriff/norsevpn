@@ -1,5 +1,6 @@
 import os
 import sys
+import logging
 from PyQt5.QtWidgets import QLabel, QMessageBox, QVBoxLayout, QWidget, QCheckBox
 from PyQt5 import QtCore, uic
 
@@ -43,7 +44,7 @@ class configWindow(QWidget):
     #           to update the UI/UX depending on the configuration
     #           before the user sees the window.
     def onShow(self):
-        print("Show")
+        logging.info("Show Config window")
         self.loadConfig()
         self.show()
 
@@ -54,7 +55,7 @@ class configWindow(QWidget):
     #           from the config file and show it to the user
     #           (configFile -> UI)
     def loadConfig(self):
-        print("Load Config")
+        logging.info("Load Config")
         self.slid_firewall.setValue(configManager.getConfig(configManager, "firewall"))
         self.slid_killSwitch.setValue(configManager.getConfig(configManager, "killswitch"))
         self.slid_cyberSec.setValue(configManager.getConfig(configManager, "cybersec"))
@@ -72,7 +73,7 @@ class configWindow(QWidget):
     #           from the UI to the config file
     #           (UI -> configFile)
     def saveConfig(self):
-        print("Save Config")
+        logging.info("Save Config")
         configManager.setConfig( configManager,
                                  "firewall",
                                  self.__getSetting(self.slid_firewall.value()) )

@@ -6,8 +6,8 @@
     "ipv6": false,
     "killSwitch": false,
     "killswitch": false,
-    "notify": false,
+    "notify": true,
     "obfuscate": false,
-    "selected_city": "Nicosia",
-    "selected_country": "Cyprus"
+    "selected_city": "Santiago",
+    "selected_country": "Chile"
 }

@@ -40,7 +40,6 @@ class configManager():
         for cnt in cnties:
             cities = self.__getArr(self, "nordvpn cities " + str(cnt))
             cnties[cnt].append(cities)
-        print(cnties)
         with open(locationDir, "w") as jsonFile:
             json.dump(cnties, jsonFile, indent=4, sort_keys=True)
 
