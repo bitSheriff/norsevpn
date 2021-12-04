@@ -46,6 +46,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tree_location.itemClicked.connect(self.__locationSelection)
 
         # load tree view
+        configManager.updateLocations(configManager)    # update the locations inside the json
         self.__fillLocationTree()
 
         print("Installed: " + str(nordvpn.checkInstall(nordvpn)))
@@ -61,6 +62,12 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.timer.setInterval(1000) # time in ms
         self.timer.timeout.connect(self.__update)
         self.timer.start()
+
+        self.cooldownTimer = QtCore.QTimer(self)
+        self.cooldownTimer.timeout.connect(self.__cooldownEnd)
+        self.cooldownTimer.setInterval(5000) # time in ms
+        self.cooldownTimer.setSingleShot(True)  # timer runs only once if startet
+
 
 
     ##
@@ -79,6 +86,8 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.btn_connect.setText("Disconnect")
         else:
             self.btn_connect.setText("Connect")
+            
+        # update the vpn status from console
 
     ##
     # @private
@@ -118,6 +127,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             nordvpn.connect( nordvpn, 
                              configManager.getConfig(configManager, "selected_country"),
                              configManager.getConfig(configManager, "selected_city"))
+            self.__cooldownStart()
 
     def __btnConfig(self):
         self.configWidget.onShow()
@@ -125,8 +135,6 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __debug(self):
         print("Debug")
         print(configManager.updateLocations(configManager))
-        print("Debug 2")
-        print(configManager.getCities(configManager, "United_States"))
 
     def __fillLocationTree(self):
         data = configManager.getLocationDict(configManager)
@@ -157,4 +165,21 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             nordvpn.connect( nordvpn, 
                             cnt,
                             cty)
+            self.__cooldownStart()
+
+    def __cooldownStart(self):
+        print("Cooldown Start")
+        self.cooldownTimer.start()
+
+        # disable interactions
+        self.tree_location.setDisabled(True)
+        self.btn_connect.setDisabled(True)
+
+    def __cooldownEnd(self):
+        print("CoolDown End")
+
+        # Enable all interactions again
+        self.tree_location.setDisabled(False)
+        self.btn_connect.setDisabled(False)
+
 

@@ -55,3 +55,6 @@ class nordvpn():
     def disconnect(self):
         general.getOSString("nordvpn d")
         return
+
+    def getStatus(self):
+        return general.getOSString("nordvpn status")
