@@ -21,8 +21,6 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     __isConnected = False
 
 
-
-
     ##
     # @public
     # @brief    Init
@@ -38,6 +36,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # init timer for periodical calls
         self.__init_timer()
+        self.__init_textBrowser()
 
         # button initialization
         self.btn_connect.clicked.connect(self.__btnConnect)
@@ -65,10 +64,11 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         self.cooldownTimer = QtCore.QTimer(self)
         self.cooldownTimer.timeout.connect(self.__cooldownEnd)
-        self.cooldownTimer.setInterval(5000) # time in ms
+        self.cooldownTimer.setInterval(3000) # time in ms
         self.cooldownTimer.setSingleShot(True)  # timer runs only once if startet
 
-
+    def __init_textBrowser(self):
+        self.textBrowser.setAcceptRichText(True)
 
     ##
     # @private
@@ -88,6 +88,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.btn_connect.setText("Connect")
             
         # update the vpn status from console
+        self.__updateTextBrowser()
 
     ##
     # @private
@@ -135,6 +136,15 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __debug(self):
         print("Debug")
         print(configManager.updateLocations(configManager))
+    
+    def __updateTextBrowser(self):
+        htmlText = nordvpn.getStatus(nordvpn)
+        htmlText = htmlText.replace("\t", "")
+        #htmlText = htmlText.replace("\n", "")
+        htmlText = htmlText.replace("-", "")
+        htmlText = htmlText.replace("\n", "<br>")
+        self.textBrowser.clearHistory()
+        self.textBrowser.setHtml(htmlText)
 
     def __fillLocationTree(self):
         data = configManager.getLocationDict(configManager)

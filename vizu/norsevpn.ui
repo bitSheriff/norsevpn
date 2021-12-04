@@ -116,11 +116,14 @@
    <widget class="QTextBrowser" name="textBrowser">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>150</y>
-      <width>256</width>
-      <height>192</height>
+      <x>310</x>
+      <y>140</y>
+      <width>311</width>
+      <height>311</height>
      </rect>
+    </property>
+    <property name="markdown">
+     <string/>
     </property>
    </widget>
   </widget>
