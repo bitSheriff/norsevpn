@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>NorseVPN</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../doc/img/logo/NorseVPN_app.svg</normaloff>../doc/img/logo/NorseVPN_app.svg</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QCheckBox" name="cb_connected">
     <property name="enabled">
