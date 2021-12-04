@@ -4,10 +4,9 @@
     "dns": false,
     "firewall": false,
     "ipv6": false,
-    "killSwitch": false,
     "killswitch": false,
-    "notify": true,
+    "notify": false,
     "obfuscate": false,
-    "selected_city": "Santiago",
-    "selected_country": "Chile"
+    "selected_city": "Sarajevo",
+    "selected_country": "Bosnia_And_Herzegovina"
 }
