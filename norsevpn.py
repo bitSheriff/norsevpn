@@ -7,10 +7,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QFileDialog
 import qdarkstyle
 
+from PyQt5.QtGui import * 
+from PyQt5.QtWidgets import * 
+
 # own modules and libs
 #import vizu.norseVPNGUIWindow as norseVPNGUIWindow
 import vizu.mainWindow as mainWindow
 import lib.nordvpn as nordvpn
+import vizu.trayWindow as trayWindow
 
 
 ##
@@ -23,6 +27,9 @@ if __name__ == "__main__":
 
     # set the window style
     app.setStyleSheet(qdarkstyle.load_stylesheet(qt_api='pyqt5'))
+
+    tray = trayWindow.trayWindow(QtGui.QIcon("doc/img/logo/NorseVPN_app.svg"), app)
+    tray.show()
 
     window.show()
     sys.exit(app.exec_())
