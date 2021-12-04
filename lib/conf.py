@@ -21,6 +21,11 @@ class configManager():
             data = json.load(f)
         return data[cnt]
 
+    def getLocationDict(self):
+        with open(locationDir) as f:
+            data = json.load(f)
+        return data
+
     ##
     # @public
     # @brief    Update Locations
@@ -57,7 +62,14 @@ class configManager():
             f.seek(0)
             json.dump(data, f,  indent=4, sort_keys=True)
             f.close()
-
+    ##
+    # @public
+    # @brief    Get Config
+    # @details  This interface gets the wanted configuration of the 
+    #           settings file.
+    #
+    # @param strVal
+    # @returns  string  Value of the wanted configuration
     def getConfig(self, strVal):
         with open(settingDir, "r") as f:
             data = json.load(f)

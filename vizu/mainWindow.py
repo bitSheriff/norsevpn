@@ -1,7 +1,7 @@
 # imports
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
-from PyQt5.QtWidgets import QApplication, QMessageBox, QWidget, QInputDialog, QLineEdit, QFileDialog, QCheckBox
+from PyQt5.QtWidgets import QApplication, QMessageBox, QTreeWidgetItem, QWidget, QInputDialog, QLineEdit, QFileDialog, QCheckBox
 
 sys.path.append("..")
 from lib.nordvpn import nordvpn as nordvpn
@@ -43,6 +43,10 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_connect.clicked.connect(self.__btnConnect)
         self.btn_debug.clicked.connect(self.__debug)
         self.btn_config.clicked.connect(self.__btnConfig)
+        self.tree_location.itemClicked.connect(self.__locationSelection)
+
+        # load tree view
+        self.__fillLocationTree()
 
         print("Installed: " + str(nordvpn.checkInstall(nordvpn)))
         print("Connected: " + str(nordvpn.isConnected(nordvpn)))
@@ -111,7 +115,9 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         if self.__isConnected:
             nordvpn.disconnect(nordvpn)
         else:
-            nordvpn.connect(nordvpn)
+            nordvpn.connect( nordvpn, 
+                             configManager.getConfig(configManager, "selected_country"),
+                             configManager.getConfig(configManager, "selected_city"))
 
     def __btnConfig(self):
         self.configWidget.onShow()
@@ -121,4 +127,34 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         print(configManager.updateLocations(configManager))
         print("Debug 2")
         print(configManager.getCities(configManager, "United_States"))
+
+    def __fillLocationTree(self):
+        data = configManager.getLocationDict(configManager)
+        items = []
+        for key, values in data.items():
+            item = QTreeWidgetItem([key])
+            for value in values:
+                child = QTreeWidgetItem(value)
+                item.addChild(child)
+            items.append(item)
+        self.tree_location.insertTopLevelItems(0, items)
+
+    def __locationSelection(self):
+        item = self.tree_location.currentItem()
+        par = item.parent()
+
+        if type(par) is not QTreeWidgetItem:
+            cnt = item.text(0)
+            cty = "none"
+        else:
+            cnt = par.text(0)
+            cty = item.text(0)
+        print("Country: " + cnt + " City: " + cty)
+        configManager.setConfig(configManager, "selected_country",cnt)
+        configManager.setConfig(configManager, "selected_city",cty)
+        if self.__isConnected:
+            # vpn is currently connected, change location of the fly
+            nordvpn.connect( nordvpn, 
+                            cnt,
+                            cty)
 
