@@ -33,7 +33,7 @@ class configWindow(QWidget):
         self.slid_ipv6.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.slid_ipv6))
         self.slid_dns.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.slid_dns))
         # button setup
-        self.btn_close.clicked.connect(self.closeEvent)
+        self.btn_close.clicked.connect(self.__closeBtn)
         self.btn_save.clicked.connect(self.saveConfig)
 
     ## 
@@ -56,11 +56,11 @@ class configWindow(QWidget):
     def loadConfig(self):
         print("Load Config")
         self.slid_firewall.setValue(configManager.getConfig(configManager, "firewall"))
-        self.slid_killSwitch.setValue(configManager.getConfig(configManager, "killSwitch"))
-        self.slid_cyberSec.setValue(configManager.getConfig(configManager, "cyberSec"))
+        self.slid_killSwitch.setValue(configManager.getConfig(configManager, "killswitch"))
+        self.slid_cyberSec.setValue(configManager.getConfig(configManager, "cybersec"))
         self.slid_obfuscate.setValue(configManager.getConfig(configManager, "obfuscate"))
         self.slid_notify.setValue(configManager.getConfig(configManager, "notify"))
-        self.slid_autoConnect.setValue(configManager.getConfig(configManager, "autoConnect"))
+        self.slid_autoConnect.setValue(configManager.getConfig(configManager, "autoconnect"))
         self.slid_ipv6.setValue(configManager.getConfig(configManager, "ipv6"))
         self.slid_dns.setValue(configManager.getConfig(configManager, "dns"))
         return
@@ -77,10 +77,10 @@ class configWindow(QWidget):
                                  "firewall",
                                  self.__getSetting(self.slid_firewall.value()) )
         configManager.setConfig( configManager,
-                                 "killSwitch",
+                                 "killswitch",
                                  self.__getSetting(self.slid_killSwitch.value()) )
         configManager.setConfig( configManager,
-                                 "cyberSec",
+                                 "cybersec",
                                  self.__getSetting(self.slid_cyberSec.value()) )
         configManager.setConfig( configManager,
                                  "obfuscate",
@@ -89,7 +89,7 @@ class configWindow(QWidget):
                                  "notify",
                                  self.__getSetting(self.slid_notify.value()) )
         configManager.setConfig( configManager,
-                                 "autoConnect",
+                                 "autoconnect",
                                  self.__getSetting(self.slid_autoConnect.value()) )
         configManager.setConfig( configManager,
                                  "ipv6",
@@ -123,6 +123,9 @@ class configWindow(QWidget):
         else:
             event.ignore()
             pass
+
+    def __closeBtn(self):
+        self.close()
 
     ##
     # @private
