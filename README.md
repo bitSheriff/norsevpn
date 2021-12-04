@@ -1,6 +1,6 @@
 # NorseVPN
 
-![](/home/benjamin/.var/app/com.github.marktext.marktext/config/marktext/images/9b4b9ab9e522d44932f890c297616c937e628080.png)
+![NorseVPN](doc/img/logo/NorseVPN_transparent%20.png)
 
 A linux NordVPN GUI client
 
