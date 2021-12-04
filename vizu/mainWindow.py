@@ -140,7 +140,6 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __updateTextBrowser(self):
         htmlText = nordvpn.getStatus(nordvpn)
         htmlText = htmlText.replace("\t", "")
-        #htmlText = htmlText.replace("\n", "")
         htmlText = htmlText.replace("-", "")
         htmlText = htmlText.replace("\n", "<br>")
         self.textBrowser.clearHistory()
