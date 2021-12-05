@@ -16,7 +16,17 @@ The next step is to login to the client. NorseVPN will not get access to your lo
 ```
 
 ## Usage
+![startup](doc/img/showcase/startup.png)
+![locations](doc/img/showcase/locations.png)
+![connection](doc/img/showcase/connected.png)
 
+### System Tray
+![systemTray](doc/img/showcase/systemtray.png)
+
+### Configuration
+![settingButton](doc/img/showcase/setting.png)
+![configurationWindow](doc/img/showcase/configurationWindow.png)
+![configurationWindowExit](doc/img/showcase/configurationWindow_exit.png)
 ## Development
 
 ### Coding
