@@ -24,6 +24,9 @@ If you start the NorseVPN client you will see the main window with all the actio
 ![startup](doc/img/showcase/startup.png)
 
 The location can be selected by country and city. If you are not connected you can select a city and with a click on the button *Connect* you will get connected. After a startup of the connection further actions are limited a few seconds to avoid crashing the vpn settings on your computer. If you are connected you can change the server by selecting a new city.
+
+The last selected location is stored in a json-file to be able to quick-connect the next application start to the last location.
+
 > **_NOTE:_** 
 > If you do note choose a city but only a country the nordvpn client will choose a city for you
 
@@ -57,6 +60,8 @@ Current available configurations:
 - Auto Connect
 - IPv6
 - DNS
+
+These configuration parameters get stored inside a json-file to store them for the next application start.
 
 > For further information please read more at the [archlinux-wiki](https://wiki.archlinux.org/title/NordVPN#Settings).
 
