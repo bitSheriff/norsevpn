@@ -52,6 +52,9 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         logging.info("Installed: " + str(nordvpn.checkInstall(nordvpn)))
         logging.info("Connected: " + str(nordvpn.isConnected(nordvpn)))
 
+        # deactivate debugging functions
+        self.btn_debug.setVisible(False)
+
     ##
     # @private
     # @brief    Init Timer
