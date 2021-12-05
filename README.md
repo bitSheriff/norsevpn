@@ -5,8 +5,8 @@
 A linux NordVPN GUI client
 
 **Disclaimer**
->The developers do not stand in any relation to [nordVPN](https://nordvpn.com).
->Further no code from nordVPN is used, this application is just build on the [cli-client](https://nordvpn.com/de/download/linux/).
+> The developers do not stand in any relation to [nordVPN](https://nordvpn.com).
+> Further no code from nordVPN is used, this application is just build on the [cli-client](https://nordvpn.com/de/download/linux/).
 
 ------
 
@@ -24,8 +24,8 @@ If you start the NorseVPN client you will see the main window with all the actio
 ![startup](doc/img/showcase/startup.png)
 
 The location can be selected by country and city. If you are not connected you can select a city and with a click on the button *Connect* you will get connected. After a startup of the connection further actions are limited a few seconds to avoid crashing the vpn settings on your computer. If you are connected you can change the server by selecting a new city.
-> **_NOTE:_**
->If you do note choose a city but only a country the nordvpn client will choose a city for you
+> **_NOTE:_** 
+> If you do note choose a city but only a country the nordvpn client will choose a city for you
 
 ![locations](doc/img/showcase/locations.png)
 
@@ -44,7 +44,7 @@ By clicking the settings wheel on the top right corner a new window opens with a
 ![settingButton](doc/img/showcase/setting.png)
 
 > **_NOTE:_**
->At this moment no own functions are provided. All this settings are provided by the nordVPM-cli application.
+> At this moment no own functions are provided. All this settings are provided by the nordVPM-cli application.
 
 ![configurationWindow](doc/img/showcase/configurationWindow.png)
 
@@ -58,13 +58,13 @@ Current available configurations:
 - IPv6
 - DNS
 
->For further information please read more at the [archlinux-wiki](https://wiki.archlinux.org/title/NordVPN#Settings).
+> For further information please read more at the [archlinux-wiki](https://wiki.archlinux.org/title/NordVPN#Settings).
 
 
 
 If you want to close the window it is asked if you want to save the settings.
 > **_NOTE:_**
->The settings are only active by the next connection to a vpn. If you are currently connected please disconnect and reconnect so the settings are used.
+> The settings are only active by the next connection to a vpn. If you are currently connected please disconnect and reconnect so the settings are used.
 
 ![configurationWindowExit](doc/img/showcase/configurationWindow_exit.png)
 
