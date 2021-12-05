@@ -5,8 +5,8 @@
 A linux NordVPN GUI client
 
 **Disclaimer**
-> The developers do not stand in any relation to [nordVPN](https://nordvpn.com).
-> Further no code from nordVPN is used, this application is just build on the [cli-client](https://nordvpn.com/de/download/linux/).
+> The developers do not stand in any affiliated relation to [nordVPN](https://nordvpn.com), it is not verified or supported by nordVPN.
+> Further no code from nordVPN is used, this application is just wrapped around the [cli-client](https://nordvpn.com/de/download/linux/).
 
 ------
 
