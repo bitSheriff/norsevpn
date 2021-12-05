@@ -174,11 +174,12 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         configManager.setConfig(configManager, "selected_country",cnt)
         configManager.setConfig(configManager, "selected_city",cty)
         if self.__isConnected:
+            self.__cooldownStart()
             # vpn is currently connected, change location of the fly
             nordvpn.connect( nordvpn, 
                             cnt,
                             cty)
-            self.__cooldownStart()
+
 
     def __cooldownStart(self):
         logging.info("Cooldown Start")
