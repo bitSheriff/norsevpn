@@ -46,7 +46,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.tree_location.itemClicked.connect(self.__locationSelection)
 
         # load tree view
-        configManager.updateLocations(configManager)    # update the locations inside the json
+        #configManager.updateLocations(configManager)    # update the locations inside the json
         self.__fillLocationTree()
 
         logging.info("Installed: " + str(nordvpn.checkInstall(nordvpn)))
@@ -152,8 +152,12 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         for key, values in data.items():
             item = QTreeWidgetItem([key])
             for value in values:
-                child = QTreeWidgetItem(value)
-                item.addChild(child)
+                # create for every city a iterateable to add it as a child (neede by Qt)
+                for city in value:
+                    cityEntry = []
+                    cityEntry.append(city)
+                    child = QTreeWidgetItem(cityEntry)
+                    item.addChild(child)
             items.append(item)
         self.tree_location.insertTopLevelItems(0, items)
 
