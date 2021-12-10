@@ -3,3 +3,6 @@
 **/__pycache__/*
 # Documentation 
 /doc/_output
+
+# Logging and debugging
+*.log

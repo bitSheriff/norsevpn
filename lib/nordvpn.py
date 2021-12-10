@@ -1,3 +1,4 @@
+import logging
 import os, sys, string
 
 import lib.general as general
@@ -47,8 +48,10 @@ class nordvpn():
     # @param    cty    Wanted city
     def connect(self, cnt="", cty=""):
         self.__setSettings(self)        # set the user wanted settings
-        general.getOSString("nordvpn c " + cnt + "" + cty)
+        logging.info("nordvpn c " + cnt + " " + cty)
+        logging.info(general.getOSString("nordvpn c " + cnt + "" + cty))
         return
+        
 
     ## 
     # @public
@@ -56,7 +59,7 @@ class nordvpn():
     # @details  This interface is used to disconnect the nordvpn server. 
     def disconnect(self):
         self.__setDefaultSettings(self)         # return to default settings
-        general.getOSString("nordvpn d")
+        logging.info(general.getOSString("nordvpn d"))
         return
 
     ## 

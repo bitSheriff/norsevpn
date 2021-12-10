@@ -1,6 +1,7 @@
 # main file of the norsevpn - nordvpn gui client
 
 # imports
+import logging
 import sys
 import os
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
@@ -21,6 +22,9 @@ import vizu.trayWindow as trayWindow
 # @brief    Main Call
 # @details  TODO
 if __name__ == "__main__":
+
+    logging.basicConfig(filename='norsevpn.log', filemode='w', encoding='utf-8', level=logging.DEBUG)
+
     """! Initializes the program."""
     app = QtWidgets.QApplication(sys.argv)
     window = mainWindow.mainWindow()

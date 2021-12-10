@@ -1,4 +1,5 @@
 import json
+import random
 import lib.general as general
 
 configDir = "config"
@@ -112,4 +113,9 @@ class configManager():
         for x in temp:
             if(x != "-" and x != "" and x != " "):
                 arr.append(x)
-        return arr
+        return arr#
+
+    def getRandomLocation(self):
+        locations = self.getLocationDict(self)
+        country, city = random.choice(list(locations.items()))
+        return country, city
