@@ -1,5 +1,5 @@
     
-import os, sys, string
+import os, sys, string, subprocess
 
 
 ## 
@@ -12,4 +12,6 @@ def getOSString(cmnd):
     call = os.popen(cmnd, 'r')
     return call.read()
 
+def osCommandThread(cmnd):
+    subprocess.Popen([sys.executable, cmnd], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 

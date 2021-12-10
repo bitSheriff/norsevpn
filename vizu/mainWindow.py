@@ -126,6 +126,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # @details  This private method is called if the user clicks on the connect/disconnect buttin
     #           depending on the vpn state the nordvpn module is called to connect or disconnect
     def __btnConnect(self):
+        logging.info("Btn: Connect")
         # call interface depending on the vpn status
         if self.__isConnected:
             nordvpn.disconnect(nordvpn)
@@ -186,7 +187,6 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def __cooldownStart(self):
-        logging.info("Cooldown Start")
         self.cooldownTimer.start()
 
         # disable interactions
@@ -195,18 +195,14 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_shuffle.setDisabled(True)
 
     def __cooldownEnd(self):
-        logging.info("CoolDown End")
-
         # Enable all interactions again
         self.tree_location.setDisabled(False)
         self.btn_connect.setDisabled(False)
         self.btn_shuffle.setDisabled(False)
 
     def __randomLocation(self):
-        print("Random Location")
+        logging.info("Btn: Random Location")
         cnt, cty = configManager.getRandomLocation(configManager)
-        print(str(cnt))
-        print(str((cty[0])[0]))
         nordvpn.connect( nordvpn, 
                          str(cnt),
                          str((cty[0])[0]))

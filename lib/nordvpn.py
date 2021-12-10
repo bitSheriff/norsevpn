@@ -59,7 +59,7 @@ class nordvpn():
     # @details  This interface is used to disconnect the nordvpn server. 
     def disconnect(self):
         self.__setDefaultSettings(self)         # return to default settings
-        general.getOSString("nordvpn d")
+        logging.info(general.getOSString("nordvpn d"))
         return
 
     ## 
