@@ -44,6 +44,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_debug.clicked.connect(self.__debug)
         self.btn_config.clicked.connect(self.__btnConfig)
         self.tree_location.itemClicked.connect(self.__locationSelection)
+        self.btn_shuffle.clicked.connect(self.__randomLocation)
 
         # load tree view
         #configManager.updateLocations(configManager)    # update the locations inside the json
@@ -180,8 +181,8 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.__cooldownStart()
             # vpn is currently connected, change location of the fly
             nordvpn.connect( nordvpn, 
-                            cnt,
-                            cty)
+                             cnt,
+                             cty)
 
 
     def __cooldownStart(self):
@@ -191,6 +192,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # disable interactions
         self.tree_location.setDisabled(True)
         self.btn_connect.setDisabled(True)
+        self.btn_shuffle.setDisabled(True)
 
     def __cooldownEnd(self):
         logging.info("CoolDown End")
@@ -198,5 +200,14 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # Enable all interactions again
         self.tree_location.setDisabled(False)
         self.btn_connect.setDisabled(False)
+        self.btn_shuffle.setDisabled(False)
 
+    def __randomLocation(self):
+        print("Random Location")
+        cnt, cty = configManager.getRandomLocation(configManager)
+        print(str(cnt))
+        print(str((cty[0])[0]))
+        nordvpn.connect( nordvpn, 
+                         str(cnt),
+                         str((cty[0])[0]))
 
