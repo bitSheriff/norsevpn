@@ -130,6 +130,23 @@
      <string/>
     </property>
    </widget>
+   <widget class="QPushButton" name="btn_shuffle">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>20</y>
+      <width>31</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>icons/white_shuffle.svg</normaloff>icons/white_shuffle.svg</iconset>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
