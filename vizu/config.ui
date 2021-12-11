@@ -25,6 +25,10 @@
   <property name="windowTitle">
    <string>Configuration</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../doc/img/logo/NorseVPN.svg</normaloff>../doc/img/logo/NorseVPN.svg</iconset>
+  </property>
   <widget class="QPushButton" name="btn_close">
    <property name="geometry">
     <rect>
@@ -319,23 +323,17 @@
      <height>25</height>
     </rect>
    </property>
-   <property name="currentText">
-    <string/>
-   </property>
-   <property name="currentIndex">
-    <number>-1</number>
-   </property>
-   <property name="maxVisibleItems">
-    <number>2</number>
-   </property>
-   <property name="maxCount">
-    <number>2</number>
+   <property name="insertPolicy">
+    <enum>QComboBox::InsertAtBottom</enum>
    </property>
    <property name="sizeAdjustPolicy">
     <enum>QComboBox::AdjustToMinimumContentsLength</enum>
    </property>
    <property name="frame">
     <bool>true</bool>
+   </property>
+   <property name="modelColumn">
+    <number>0</number>
    </property>
   </widget>
   <widget class="QLabel" name="label_protocol">
@@ -349,6 +347,38 @@
    </property>
    <property name="text">
     <string>Protocol</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cb_technology">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>60</y>
+     <width>86</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+   </property>
+   <property name="frame">
+    <bool>true</bool>
+   </property>
+   <property name="modelColumn">
+    <number>0</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_technology">
+   <property name="geometry">
+    <rect>
+     <x>201</x>
+     <y>62</y>
+     <width>81</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Technology</string>
    </property>
   </widget>
  </widget>

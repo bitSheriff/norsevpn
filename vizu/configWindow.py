@@ -37,8 +37,8 @@ class configWindow(QWidget):
         self.btn_close.clicked.connect(self.__closeBtn)
         self.btn_save.clicked.connect(self.saveConfig)
         # combobox setup
-        self.cb_protocol.addItem("TCP")
-        self.cb_protocol.addItem("UDP")
+        self.cb_protocol.addItems(["TCP", "UDP"])
+        self.cb_technology.addItems(["OpenVPN", "NordLynx"])
 
     ## 
     # @public
@@ -71,6 +71,9 @@ class configWindow(QWidget):
         index_protocol = self.cb_protocol.findText(configManager.getConfig(configManager, "protocol"), QtCore.Qt.MatchFixedString)
         if index_protocol >= 0:
             self.cb_protocol.setCurrentIndex(index_protocol)
+        index_tech = self.cb_protocol.findText(configManager.getConfig(configManager, "technology"), QtCore.Qt.MatchFixedString)
+        if index_tech >= 0:
+            self.cb_protocol.setCurrentIndex(index_tech)
 
 
         return
@@ -109,7 +112,10 @@ class configWindow(QWidget):
                                  self.__getSetting(self.slid_dns.value()) )
         configManager.setConfig( configManager,
                                  "protocol",
-                                 self.cb_protocol.currentText() )
+                                 self.cb_protocol.currentText())
+        configManager.setConfig( configManager,
+                                 "technology",
+                                 self.cb_protocol.currentText())
         return
 
     ##

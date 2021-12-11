@@ -79,6 +79,7 @@ class nordvpn():
         self.__setSetting(self, "ipv6", configManager.getConfig(configManager, "ipv6"))
         self.__setSetting(self, "dns", configManager.getConfig(configManager, "dns"))
         self.__setSetting(self, "protocol", configManager.getConfig(configManager, "protocol"))
+        self.__setSetting(self, "technology", configManager.getConfig(configManager, "technology"))
 
     def __setDefaultSettings(self):
         self.__setSetting(self, "firewall", True)
@@ -90,6 +91,7 @@ class nordvpn():
         self.__setSetting(self, "ipv6", False)
         self.__setSetting(self, "dns", False)
         self.__setSetting(self, "protocol", "UDP")
+        self.__setSetting(self, "technology", "OpenVPN")
 
     def __setSetting(self, setting, val):
         general.getOSString("nordvpn set " + setting + " "+ str(val))
