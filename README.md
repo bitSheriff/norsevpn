@@ -54,12 +54,18 @@ By clicking the settings wheel on the top right corner a new window opens with a
 Current available configurations:
 - Firewall
 - Kill Switch
-- Cyber Security
+- [Cyber Security](https://nordvpn.com/features/cybersec/)
 - Obfuscate
 - Notify
 - Auto Connect
 - IPv6
 - DNS
+- Protocol
+  - UDP
+  - TCP
+- Technology
+  - OpenVPN
+  - [NordLynx](https://nordvpn.com/blog/nordlynx-protocol-wireguard/)
 
 These configuration parameters get stored inside a json-file to store them for the next application start.
 
@@ -82,3 +88,16 @@ If you want to close the window it is asked if you want to save the settings.
 ### Design
 
 Currently the Material Design Icons from [Google](https://fonts.google.com/icons?selected=Material+Icons) are used.
+
+### Documentation
+The code documentation is build with [doxygen](https://www.doxygen.nl/index.html). The setup is different on every operating os but not quite hard to master.
+ 
+ If doxygen is ready you can build the documentation in the console:
+
+ ```bash
+make html
+```
+After the build has finished you can open the documentation in your browser with the file *doc/_output/html/index.html*. This is the root file where you can navigate through the different categories which doxygen generated.
+
+> **_NOTE:_**
+> The documentation is ignored from git. So the documentation has to be built everytime it is checkout and there was an update.
