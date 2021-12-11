@@ -91,7 +91,13 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.btn_connect.setText("Disconnect")
         else:
             self.btn_connect.setText("Connect")
-            
+
+        # disable the main window if the config window is currently open
+        if self.configWidget.isVisible():
+            self.setDisabled(True)
+        else:
+            self.setDisabled(False)
+
         # update the vpn status from console
         self.__updateTextBrowser()
 
@@ -137,6 +143,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.__cooldownStart()
 
     def __btnConfig(self):
+        self.setDisabled(True)
         self.configWidget.onShow()
 
     def __debug(self):
