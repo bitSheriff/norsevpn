@@ -8,6 +8,7 @@ sys.path.append("..")
 from lib.nordvpn import nordvpn as nordvpn
 from lib.conf import configManager
 from vizu.configWindow import configWindow
+import lib.general as general
 
 # UI file
 uiFile = "vizu/norsevpn.ui"
@@ -49,6 +50,9 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         # load tree view
         #configManager.updateLocations(configManager)    # update the locations inside the json
         self.__fillLocationTree()
+
+        # set the version to the label
+        self.label_version.setText("Version " + general.getGitLatestTag())
 
         logging.info("Installed: " + str(nordvpn.checkInstall(nordvpn)))
         logging.info("Connected: " + str(nordvpn.isConnected(nordvpn)))

@@ -85,7 +85,6 @@ class nordvpn():
         self.__setSetting(self, "firewall", True)
         self.__setSetting(self, "killswitch", False)
         self.__setSetting(self, "cybersec", False)
-        self.__setSetting(self, "autoconnect", False)
         self.__setSetting(self, "obfuscate", False)
         self.__setSetting(self, "notify", False)
         self.__setSetting(self, "ipv6", False)
@@ -95,3 +94,6 @@ class nordvpn():
 
     def __setSetting(self, setting, val):
         general.getOSString("nordvpn set " + setting + " "+ str(val))
+
+    def getVersion(self):
+        general.getOSString("nordvpn --version")

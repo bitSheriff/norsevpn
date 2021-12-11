@@ -15,3 +15,5 @@ def getOSString(cmnd):
 def osCommandThread(cmnd):
     subprocess.Popen([sys.executable, cmnd], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
+def getGitLatestTag():
+    return getOSString("git describe --tags --abbrev=0")
