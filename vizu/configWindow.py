@@ -24,6 +24,9 @@ class configWindow(QWidget):
         super(configWindow, self).__init__()
         uic.loadUi(uiFile, self)
 
+        # inernal flags and vars
+        self.isDisabled = True
+
         # simulate toggleSwitch like handling
         self.slid_firewall.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.slid_firewall))
         self.slid_killSwitch.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.slid_killSwitch))
@@ -115,7 +118,7 @@ class configWindow(QWidget):
                                  self.cb_protocol.currentText())
         configManager.setConfig( configManager,
                                  "technology",
-                                 self.cb_protocol.currentText())
+                                 self.cb_technology.currentText())
         return
 
     ##
@@ -126,6 +129,11 @@ class configWindow(QWidget):
     #           The user can decide if the configuration should be saved, just closed
     #           or return to the config window.
     def closeEvent(self, event):
+        # if settings are nor allowed because vpn is connected, exit window without qmessagebox
+        if self.isDisabled:
+            self.close
+            return
+
         # show message to get if the user wants to save
         reply = QMessageBox.question(
             self, "Message",
@@ -175,6 +183,7 @@ class configWindow(QWidget):
     # @param    self    Object itself
     # @param    disabled    Boolish value if changes should be disabled
     def setDisableChanges(self, disabled):
+        self.isDisabled  = disabled
         self.slid_firewall.setDisabled(disabled)
         self.slid_killSwitch.setDisabled(disabled)
         self.slid_cyberSec.setDisabled(disabled)
@@ -183,5 +192,8 @@ class configWindow(QWidget):
         self.slid_autoConnect.setDisabled(disabled)
         self.slid_ipv6.setDisabled(disabled)
         self.slid_dns.setDisabled(disabled)
+
+        self.cb_protocol.setDisabled(disabled)
+        self.cb_technology.setDisabled(disabled)
 
         self.btn_save.setDisabled(disabled)
