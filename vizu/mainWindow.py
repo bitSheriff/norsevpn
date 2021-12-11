@@ -130,6 +130,8 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             # close all sub windows and this window
             if self.configWidget.isVisible():
                 self.configWidget.close()
+            if self.infoWidget.isVisible():
+                self.infoWidget.close()
             self.close()
         else:
             event.ignore()
@@ -151,7 +153,11 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                              configManager.getConfig(configManager, "selected_city"))
             self.__cooldownStart()
 
+    ##
+    # @private
+    # @brief    Method to open the config window
     def __btnConfig(self):
+        # disable the main window and show the config window
         self.setDisabled(True)
         self.configWidget.onShow()
 
@@ -159,6 +165,12 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         logging.info("Debug")
         logging.info(configManager.updateLocations(configManager))
     
+    ##
+    # @private
+    # @brief    Method to update the live status window
+    # @details  This internal method is periodically called to
+    #           to update the status of the vpn connection.
+    #           It replaces some chars in the string to display it properly.
     def __updateTextBrowser(self):
         htmlText = nordvpn.getStatus(nordvpn)
         htmlText = htmlText.replace("\t", "")
@@ -173,7 +185,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         for key, values in data.items():
             item = QTreeWidgetItem([key])
             for value in values:
-                # create for every city a iterateable to add it as a child (neede by Qt)
+                # create for every city a iterateable to add it as a child (needed by Qt)
                 for city in value:
                     cityEntry = []
                     cityEntry.append(city)
@@ -224,4 +236,4 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                          str((cty[0])[0]))
 
     def __showInfoWindow(self):
-        self.infoWidget.show()
+        self.infoWidget.onShow()

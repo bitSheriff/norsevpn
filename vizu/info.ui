@@ -32,7 +32,7 @@
   <widget class="QPushButton" name="btn_close">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>309</x>
      <y>270</y>
      <width>83</width>
      <height>25</height>
@@ -40,6 +40,29 @@
    </property>
    <property name="text">
     <string>Close</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowser">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>381</width>
+     <height>251</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_showLog">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>270</y>
+     <width>83</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Show Log</string>
    </property>
   </widget>
  </widget>

@@ -96,4 +96,4 @@ class nordvpn():
         general.getOSString("nordvpn set " + setting + " "+ str(val))
 
     def getVersion(self):
-        general.getOSString("nordvpn --version")
+        return general.getOSString("nordvpn --version")

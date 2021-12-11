@@ -17,3 +17,9 @@ def osCommandThread(cmnd):
 
 def getGitLatestTag():
     return getOSString("git describe --tags --abbrev=0")
+
+def getGitHashLong():
+    return getOSString("git rev-parse HEAD")
+
+def getGitHashShort():
+    return getOSString("git rev-parse --short HEAD")
