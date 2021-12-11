@@ -36,6 +36,9 @@ class configWindow(QWidget):
         # button setup
         self.btn_close.clicked.connect(self.__closeBtn)
         self.btn_save.clicked.connect(self.saveConfig)
+        # combobox setup
+        self.cb_protocol.addItem("TCP")
+        self.cb_protocol.addItem("UDP")
 
     ## 
     # @public
@@ -64,6 +67,12 @@ class configWindow(QWidget):
         self.slid_autoConnect.setValue(configManager.getConfig(configManager, "autoconnect"))
         self.slid_ipv6.setValue(configManager.getConfig(configManager, "ipv6"))
         self.slid_dns.setValue(configManager.getConfig(configManager, "dns"))
+        # set the selected item in the comboboxes
+        index_protocol = self.cb_protocol.findText(configManager.getConfig(configManager, "protocol"), QtCore.Qt.MatchFixedString)
+        if index_protocol >= 0:
+            self.cb_protocol.setCurrentIndex(index_protocol)
+
+
         return
 
     ##
@@ -98,6 +107,9 @@ class configWindow(QWidget):
         configManager.setConfig( configManager,
                                  "dns",
                                  self.__getSetting(self.slid_dns.value()) )
+        configManager.setConfig( configManager,
+                                 "protocol",
+                                 self.cb_protocol.currentText() )
         return
 
     ##

@@ -1,4 +1,5 @@
 import json
+import logging
 import random
 import lib.general as general
 
@@ -74,7 +75,11 @@ class configManager():
         with open(settingDir, "r") as f:
             data = json.load(f)
             f.close()
-        return data[strVal]
+        try:
+            return data[strVal]
+        except KeyError as err:
+            logging.error("Config Key " + strVal + " not found")
+            return ""
 
     ## 
     # @public

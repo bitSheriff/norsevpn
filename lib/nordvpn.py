@@ -70,24 +70,26 @@ class nordvpn():
         return general.getOSString("nordvpn status")
 
     def __setSettings(self):
-        self.__setBoolSetting(self, "firewall", configManager.getConfig(configManager, "firewall"))
-        self.__setBoolSetting(self, "killswitch", configManager.getConfig(configManager, "killswitch"))
-        self.__setBoolSetting(self, "cybersec", configManager.getConfig(configManager, "cybersec"))
-        self.__setBoolSetting(self, "autoconnect", configManager.getConfig(configManager, "autoconnect"))
-        self.__setBoolSetting(self, "obfuscate", configManager.getConfig(configManager, "obfuscate"))
-        self.__setBoolSetting(self, "notify", configManager.getConfig(configManager, "notify"))
-        self.__setBoolSetting(self, "ipv6", configManager.getConfig(configManager, "ipv6"))
-        self.__setBoolSetting(self, "dns", configManager.getConfig(configManager, "dns"))
+        self.__setSetting(self, "firewall", configManager.getConfig(configManager, "firewall"))
+        self.__setSetting(self, "killswitch", configManager.getConfig(configManager, "killswitch"))
+        self.__setSetting(self, "cybersec", configManager.getConfig(configManager, "cybersec"))
+        self.__setSetting(self, "autoconnect", configManager.getConfig(configManager, "autoconnect"))
+        self.__setSetting(self, "obfuscate", configManager.getConfig(configManager, "obfuscate"))
+        self.__setSetting(self, "notify", configManager.getConfig(configManager, "notify"))
+        self.__setSetting(self, "ipv6", configManager.getConfig(configManager, "ipv6"))
+        self.__setSetting(self, "dns", configManager.getConfig(configManager, "dns"))
+        self.__setSetting(self, "protocol", configManager.getConfig(configManager, "protocol"))
 
     def __setDefaultSettings(self):
-        self.__setBoolSetting(self, "firewall", True)
-        self.__setBoolSetting(self, "killswitch", False)
-        self.__setBoolSetting(self, "cybersec", False)
-        self.__setBoolSetting(self, "autoconnect", False)
-        self.__setBoolSetting(self, "obfuscate", False)
-        self.__setBoolSetting(self, "notify", False)
-        self.__setBoolSetting(self, "ipv6", False)
-        self.__setBoolSetting(self, "dns", False)
+        self.__setSetting(self, "firewall", True)
+        self.__setSetting(self, "killswitch", False)
+        self.__setSetting(self, "cybersec", False)
+        self.__setSetting(self, "autoconnect", False)
+        self.__setSetting(self, "obfuscate", False)
+        self.__setSetting(self, "notify", False)
+        self.__setSetting(self, "ipv6", False)
+        self.__setSetting(self, "dns", False)
+        self.__setSetting(self, "protocol", "UDP")
 
-    def __setBoolSetting(self, setting, val):
+    def __setSetting(self, setting, val):
         general.getOSString("nordvpn set " + setting + " "+ str(val))
