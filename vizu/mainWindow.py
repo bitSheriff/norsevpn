@@ -8,6 +8,7 @@ sys.path.append("..")
 from lib.nordvpn import nordvpn as nordvpn
 from lib.conf import configManager
 from vizu.configWindow import configWindow
+from vizu.infoWindow import infoWindow
 import lib.general as general
 
 # UI file
@@ -34,6 +35,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.configWidget = configWindow()
+        self.infoWidget = infoWindow()
         self.setupUi(self)
 
         # init timer for periodical calls
@@ -46,7 +48,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.btn_config.clicked.connect(self.__btnConfig)
         self.tree_location.itemClicked.connect(self.__locationSelection)
         self.btn_shuffle.clicked.connect(self.__randomLocation)
-
+        self.btn_info.clicked.connect(self.__showInfoWindow)
         # load tree view
         #configManager.updateLocations(configManager)    # update the locations inside the json
         self.__fillLocationTree()
@@ -221,3 +223,5 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                          str(cnt),
                          str((cty[0])[0]))
 
+    def __showInfoWindow(self):
+        self.infoWidget.show()
