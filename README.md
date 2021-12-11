@@ -51,7 +51,7 @@ By clicking the settings wheel on the top right corner a new window opens with a
 ![settingButton](doc/img/showcase/setting.png)
 
 > **_NOTE:_**
-> At this moment no own functions are provided. All this settings are provided by the nordVPM-cli application.
+> At this moment no own functions are provided. All this settings are provided by the nordVPN-cli application.
 
 ![configurationWindow](doc/img/showcase/configurationWindow.png)
 
