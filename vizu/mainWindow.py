@@ -98,6 +98,9 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             self.setDisabled(False)
 
+        # disable changes in the settings if currently connected
+        self.configWidget.setDisableChanges(self.__isConnected)
+
         # update the vpn status from console
         self.__updateTextBrowser()
 

@@ -147,5 +147,23 @@ class configWindow(QWidget):
             slid.setValue(1)
         else:
             slid.setValue(0)
+    ##
+    # @public
+    # @brief    Set Disable Changes
+    # @details  This interface disables and enables changes on the settings page.
+    #           It is needed to avoid changes setting during a vpn connection 
+    #           because they would not take affect until a new connection.
+    #
+    # @param    self    Object itself
+    # @param    disabled    Boolish value if changes should be disabled
+    def setDisableChanges(self, disabled):
+        self.slid_firewall.setDisabled(disabled)
+        self.slid_killSwitch.setDisabled(disabled)
+        self.slid_cyberSec.setDisabled(disabled)
+        self.slid_obfuscate.setDisabled(disabled)
+        self.slid_notify.setDisabled(disabled)
+        self.slid_autoConnect.setDisabled(disabled)
+        self.slid_ipv6.setDisabled(disabled)
+        self.slid_dns.setDisabled(disabled)
 
-
+        self.btn_save.setDisabled(disabled)
