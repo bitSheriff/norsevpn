@@ -13,17 +13,18 @@ from PyQt5.QtWidgets import *
 
 # own modules and libs
 #import vizu.norseVPNGUIWindow as norseVPNGUIWindow
+sys.path.append("..")
 import vizu.mainWindow as mainWindow
 import lib.nordvpn as nordvpn
 import vizu.trayWindow as trayWindow
-
+import lib.general as general
 
 ##
 # @brief    Main Call
 # @details  TODO
 if __name__ == "__main__":
 
-    logging.basicConfig(filename='norsevpn.log', filemode='w', encoding='utf-8', level=logging.DEBUG)
+    general.logFileHeader()
 
     """! Initializes the program."""
     app = QtWidgets.QApplication(sys.argv)

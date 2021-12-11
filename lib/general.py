@@ -1,4 +1,5 @@
     
+import logging
 import os, sys, string, subprocess
 
 
@@ -23,3 +24,14 @@ def getGitHashLong():
 
 def getGitHashShort():
     return getOSString("git rev-parse --short HEAD")
+
+def logFileHeader():
+    logging.basicConfig(filename='norsevpn.log',
+    filemode='w', encoding='utf-8',
+    level=logging.DEBUG, format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S')
+    
+    logging.info("norseVPN version: " + getGitLatestTag())
+    logging.info("norseVPN git-hash: " + getGitHashLong())
+    logging.info("nordvpn version: " + getOSString("nordvpn --version") )
+    logging.info("openvpn version: " + getOSString("openvpn --version") )
