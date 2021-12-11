@@ -32,6 +32,10 @@ The last selected location is stored in a json-file to be able to quick-connect 
 
 ![locations](doc/img/showcase/locations.png)
 
+A new feature which the cli-client does not have is a random location selection. A click on this button will connect you with a random selected server which are available. This action is independent from the connection state so it will work if you are disconnected or connected.
+
+![locations](doc/img/showcase/locations_random.png)
+
 If you connected to a server the live status window in the center of the window will display further information on your connection. The connected checkbox on the top right corner is now checked.
 
 ![connection](doc/img/showcase/connected.png)
