@@ -7,6 +7,7 @@
     "killswitch": false,
     "notify": false,
     "obfuscate": false,
+    "protocol": "UDP",
     "selected_city": "Budapest",
     "selected_country": "Hungary"
 }
