@@ -219,6 +219,9 @@
      <height>17</height>
     </rect>
    </property>
+   <property name="toolTip">
+    <string>blub</string>
+   </property>
    <property name="text">
     <string>Firewall</string>
    </property>
@@ -232,6 +235,9 @@
      <height>17</height>
     </rect>
    </property>
+   <property name="toolTip">
+    <string>This security feature blocks your device from accessing the Internet outside the secure VPN tunnel, in case connection with a VPN server is lost.</string>
+   </property>
    <property name="text">
     <string>Kill Switch</string>
    </property>
@@ -244,6 +250,9 @@
      <width>81</width>
      <height>17</height>
     </rect>
+   </property>
+   <property name="toolTip">
+    <string>When enabled, the CyberSec feature will automatically block suspicious websites so that no malware or other cyber threats can infect your device. Additionally, no flashy ads will come into your sight.</string>
    </property>
    <property name="text">
     <string>Cyber-Sec</string>
@@ -283,6 +292,9 @@
      <width>111</width>
      <height>17</height>
     </rect>
+   </property>
+   <property name="toolTip">
+    <string>When enabled, this feature will automatically try to connect to VPN on operating system startup. </string>
    </property>
    <property name="text">
     <string>Auto Connect</string>
