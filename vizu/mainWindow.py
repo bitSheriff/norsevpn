@@ -59,6 +59,10 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         logging.info("Installed: " + str(nordvpn.checkInstall(nordvpn)))
         logging.info("Connected: " + str(nordvpn.isConnected(nordvpn)))
 
+        # show an error window if nordvpn is not installed on the system
+        if(not nordvpn.checkInstall(nordvpn)):
+            self.__showErrorBox()
+
         # deactivate debugging functions
         self.btn_debug.setVisible(False)
 
@@ -172,10 +176,13 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     #           to update the status of the vpn connection.
     #           It replaces some chars in the string to display it properly.
     def __updateTextBrowser(self):
-        htmlText = nordvpn.getStatus(nordvpn)
-        htmlText = htmlText.replace("\t", "")
-        htmlText = htmlText.replace("-", "")
-        htmlText = htmlText.replace("\n", "<br>")
+        if(nordvpn.checkInstall(nordvpn)):
+            htmlText = nordvpn.getStatus(nordvpn)
+            htmlText = htmlText.replace("\t", "")
+            htmlText = htmlText.replace("-", "")
+            htmlText = htmlText.replace("\n", "<br>")
+        else:
+            htmlText = "nordVPN is not installed"
         self.textBrowser.clearHistory()
         self.textBrowser.setHtml(htmlText)
 
@@ -237,3 +244,13 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def __showInfoWindow(self):
         self.infoWidget.onShow()
+
+    def __showErrorBox(self):
+        print("Show Error Box")
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Critical)
+        msg.setText("nordvpn is not installed")
+        msg.setInformativeText("Please visit the official github repository for further informations")
+        msg.setWindowTitle("norseVPN Error")
+        msg.setStandardButtons(QMessageBox.Ignore)
+        msg.exec_()
