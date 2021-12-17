@@ -1,8 +1,14 @@
 # Environments
 .venv
 **/__pycache__/*
+
 # Documentation 
 /doc/_output
 
 # Logging and debugging
 *.log
+
+# Builds
+/build
+/dist
+*.spec
