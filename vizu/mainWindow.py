@@ -246,7 +246,6 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.infoWidget.onShow()
 
     def __showErrorBox(self):
-        print("Show Error Box")
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Critical)
         msg.setText("nordvpn is not installed")
