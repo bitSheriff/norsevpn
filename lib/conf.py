@@ -6,7 +6,6 @@ import os, sys
 
 sys.path.append("..")
 import lib.general as general
-import config.defaultConfig as defaultConfig
 
 configDir = "~/.config/norsevpn"
 locationDir= os.path.abspath(os.path.expanduser(os.path.expandvars(configDir + "/locations.json"))) 
@@ -27,8 +26,8 @@ class configManager():
             "notify": False,
             "obfuscate": False,
             "protocol": "UDP",
-            "selected_city": "Budapest",
-            "selected_country": "Hungary",
+            "selected_city": "Vienna",
+            "selected_country": "Austria",
             "technology": "OpenVPN"
             }
 
