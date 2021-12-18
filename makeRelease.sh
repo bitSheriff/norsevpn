@@ -20,7 +20,6 @@ echo "Create the portable single execute file"
 pyinstaller norsevpn.py \
 --onefile \
 --icon=doc/img/logo/norsevpn.ico \
---paths ./vizu
 
 echo " <--- Exit vitual enviroment ----> "
 exit

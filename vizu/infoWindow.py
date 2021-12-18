@@ -12,10 +12,9 @@ import lib.general as general
 
 # import ui
 from vizu.infoUI import Ui_Info
+import vizu.resources
 
 ui_path = os.path.dirname(os.path.abspath(__file__))
-htmlFile = os.path.join(ui_path,"info.html")
-
 ##
 # @brief Class for the information window
 class infoWindow(QWidget):
@@ -44,8 +43,13 @@ class infoWindow(QWidget):
         logging.info("Show Info window")
         # clear textbrowser
         self.ui.textBrowser.clearHistory()
-        with open(htmlFile, 'r') as file:
-            htmlText = file.read()
+        
+        htmlFile = QtCore.QFile(":/info.html")
+        if htmlFile.open(QtCore.QFile.ReadOnly):
+            data = htmlFile.readAll()
+            codec = QtCore.QTextCodec.codecForHtml(data)
+        htmlText = codec.toUnicode(data)
+        
         # parse the versions and more data into html file
         htmlText = htmlText.replace("{%NORSEVPN_VERSION%}", general.getGitLatestTag() )
         htmlText = htmlText.replace("{%NORSEVPN_GITHASH%}", general.getGitHashShort() )

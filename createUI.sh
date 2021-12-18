@@ -4,11 +4,15 @@
 echo " <---- Entering python virtual enviroment ----> "
 source .venv/bin/activate
 
+# create resources file
+echo "Creating resources"
+pyrcc5 vizu/resources.qrc -o vizu/resources.py
+
 # create python files of the ui files so they can be easier used as standalones
 echo "Create python file from the Qt ui files"
-python3 pyrcc5 -x vizu/main.ui   -o vizu/mainUI.py
-python3 pyrcc5 -x vizu/config.ui -o vizu/configUI.py
-python3 pyrcc5 -x vizu/info.ui   -o vizu/infoUI.py
+pyuic5 -x vizu/main.ui   -o vizu/mainUI.py
+pyuic5 -x vizu/config.ui -o vizu/configUI.py
+pyuic5 -x vizu/info.ui   -o vizu/infoUI.py
 
 echo " <--- Exit vitual enviroment ----> "
 exit
