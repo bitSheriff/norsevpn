@@ -11,14 +11,12 @@ from vizu.configWindow import configWindow
 from vizu.infoWindow import infoWindow
 import lib.general as general
 
-# UI file
-uiFile = "vizu/norsevpn.ui"
-Ui_MainWindow, QtBaseClass = uic.loadUiType(uiFile)
-
+# import ui
+from vizu.mainUI import Ui_NorseVPN
 
 ##
 # @brief mainWindow class
-class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
+class mainWindow(QtWidgets.QMainWindow):
 
     # private vars
     __isConnected = False
@@ -32,29 +30,32 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # @param    self    Object itself
     def __init__(self):
         # create the instance of the Qt window
-        QtWidgets.QMainWindow.__init__(self)
-        Ui_MainWindow.__init__(self)
+        #QtWidgets.QMainWindow.__init__(self)
+        #Ui_MainWindow.__init__(self)
         self.configWidget = configWindow()
         self.infoWidget = infoWindow()
-        self.setupUi(self)
+
+        super(mainWindow, self).__init__()
+        self.ui = Ui_NorseVPN()
+        self.ui.setupUi(self)
 
         # init timer for periodical calls
         self.__init_timer()
         self.__init_textBrowser()
 
         # button initialization
-        self.btn_connect.clicked.connect(self.__btnConnect)
-        self.btn_debug.clicked.connect(self.__debug)
-        self.btn_config.clicked.connect(self.__btnConfig)
-        self.tree_location.itemClicked.connect(self.__locationSelection)
-        self.btn_shuffle.clicked.connect(self.__randomLocation)
-        self.btn_info.clicked.connect(self.__showInfoWindow)
+        self.ui.btn_debug.clicked.connect(self.__debug)
+        self.ui.btn_config.clicked.connect(self.__btnConfig)
+        self.ui.btn_connect.clicked.connect(self.__btnConnect)
+        self.ui.btn_shuffle.clicked.connect(self.__randomLocation)
+        self.ui.btn_info.clicked.connect(self.__showInfoWindow)
+        self.ui.tree_location.itemClicked.connect(self.__locationSelection)
         # load tree view
         #configManager.updateLocations(configManager)    # update the locations inside the json
         self.__fillLocationTree()
 
         # set the version to the label
-        self.label_version.setText("Version " + general.getGitLatestTag())
+        self.ui.label_version.setText("Version " + general.getGitLatestTag())
 
         logging.info("Installed: " + str(nordvpn.checkInstall(nordvpn)))
         logging.info("Connected: " + str(nordvpn.isConnected(nordvpn)))
@@ -64,7 +65,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.__showErrorBox()
 
         # deactivate debugging functions
-        self.btn_debug.setVisible(False)
+        self.ui.btn_debug.setVisible(False)
 
     ##
     # @private
@@ -83,7 +84,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.cooldownTimer.setSingleShot(True)  # timer runs only once if startet
 
     def __init_textBrowser(self):
-        self.textBrowser.setAcceptRichText(True)
+        self.ui.textBrowser.setAcceptRichText(True)
 
     ##
     # @private
@@ -95,12 +96,12 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.__isConnected = nordvpn.isConnected(nordvpn)
 
         # update the checkbox
-        self.cb_connected.setChecked(self.__isConnected)
+        self.ui.cb_connected.setChecked(self.__isConnected)
         # update the text on the button depending on the connection state
         if self.__isConnected:
-            self.btn_connect.setText("Disconnect")
+            self.ui.btn_connect.setText("Disconnect")
         else:
-            self.btn_connect.setText("Connect")
+            self.ui.btn_connect.setText("Connect")
 
         # disable the main window if the config window is currently open
         if self.configWidget.isVisible():
@@ -183,8 +184,8 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             htmlText = htmlText.replace("\n", "<br>")
         else:
             htmlText = "nordVPN is not installed"
-        self.textBrowser.clearHistory()
-        self.textBrowser.setHtml(htmlText)
+        self.ui.textBrowser.clearHistory()
+        self.ui.textBrowser.setHtml(htmlText)
 
     def __fillLocationTree(self):
         data = configManager.getLocationDict(configManager)
@@ -199,7 +200,7 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     child = QTreeWidgetItem(cityEntry)
                     item.addChild(child)
             items.append(item)
-        self.tree_location.insertTopLevelItems(0, items)
+        self.ui.tree_location.insertTopLevelItems(0, items)
 
     def __locationSelection(self):
         item = self.tree_location.currentItem()
@@ -225,15 +226,15 @@ class mainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.cooldownTimer.start()
 
         # disable interactions
-        self.tree_location.setDisabled(True)
-        self.btn_connect.setDisabled(True)
-        self.btn_shuffle.setDisabled(True)
+        self.ui.tree_location.setDisabled(True)
+        self.ui.btn_connect.setDisabled(True)
+        self.ui.btn_shuffle.setDisabled(True)
 
     def __cooldownEnd(self):
         # Enable all interactions again
-        self.tree_location.setDisabled(False)
-        self.btn_connect.setDisabled(False)
-        self.btn_shuffle.setDisabled(False)
+        self.ui.tree_location.setDisabled(False)
+        self.ui.btn_connect.setDisabled(False)
+        self.ui.btn_shuffle.setDisabled(False)
 
     def __randomLocation(self):
         logging.info("Btn: Random Location")

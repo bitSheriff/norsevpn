@@ -10,10 +10,10 @@ from lib.conf import configManager
 from lib.nordvpn import nordvpn as nordvpn
 import lib.general as general
 
-# UI file
-ui_path = os.path.dirname(os.path.abspath(__file__))
-uiFile = os.path.join(ui_path,"info.ui")
+# import ui
+from vizu.infoUI import Ui_Info
 
+ui_path = os.path.dirname(os.path.abspath(__file__))
 htmlFile = os.path.join(ui_path,"info.html")
 
 ##
@@ -25,12 +25,14 @@ class infoWindow(QWidget):
     # @brief    Init
     # @details  Class gets initialized
     def __init__(self):
-        super(infoWindow, self).__init__()
-        uic.loadUi(uiFile, self)
 
-        self.btn_close.clicked.connect(self.close)
-        self.btn_showLog.clicked.connect(self.__showLog)
-        self.textBrowser.clearHistory()
+        super(infoWindow, self).__init__()
+        self.ui = Ui_Info()
+        self.ui.setupUi(self)
+
+        self.ui.btn_close.clicked.connect(self.close)
+        self.ui.btn_showLog.clicked.connect(self.__showLog)
+        self.ui.textBrowser.clearHistory()
 
     ## 
     # @public
@@ -41,14 +43,14 @@ class infoWindow(QWidget):
     def onShow(self):
         logging.info("Show Info window")
         # clear textbrowser
-        self.textBrowser.clearHistory()
+        self.ui.textBrowser.clearHistory()
         with open(htmlFile, 'r') as file:
             htmlText = file.read()
         # parse the versions and more data into html file
         htmlText = htmlText.replace("{%NORSEVPN_VERSION%}", general.getGitLatestTag() )
         htmlText = htmlText.replace("{%NORSEVPN_GITHASH%}", general.getGitHashShort() )
         htmlText = htmlText.replace("{%NORDVPN_VERSION%}", nordvpn.getVersion(nordvpn) )
-        self.textBrowser.setHtml(htmlText)
+        self.ui.textBrowser.setHtml(htmlText)
         self.show()
 
     ## 
