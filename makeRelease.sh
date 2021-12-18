@@ -1,21 +1,26 @@
 #!/bin/bash
 
 # clean the build enviroment
+ehco "Delete old builds"
 rm -rf dist/
 rm -rf build/
 
+# create new python files from ui
+bash createUI.sh
+
 # activate the virtual enviroment
+echo " <---- Entering python virtual enviroment ----> "
 source .venv/bin/activate
 
 # export the needed packages
+echo "Export needed packages"
 pip3 freeze > requirements.txt
 
-pyinstaller norsevpn.spec \
+echo "Create the portable single execute file"
+pyinstaller norsevpn.py \
 --onefile \
---noconsole \
 --icon=doc/img/logo/norsevpn.ico \
---add-data="README.md:." \
---add-data="vizu/norsevpn.ui:." \
---add-data="vizu/config.ui:." \
---add-data="vizu/info.ui:." \
 --paths ./vizu
+
+echo " <--- Exit vitual enviroment ----> "
+exit
