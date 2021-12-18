@@ -50,8 +50,12 @@ class mainWindow(QtWidgets.QMainWindow):
         self.ui.btn_shuffle.clicked.connect(self.__randomLocation)
         self.ui.btn_info.clicked.connect(self.__showInfoWindow)
         self.ui.tree_location.itemClicked.connect(self.__locationSelection)
+
+        # initialize system config directory if it does not exist
+        configManager.initializeConfig(configManager)
+
         # load tree view
-        #configManager.updateLocations(configManager)    # update the locations inside the json
+        configManager.updateLocations(configManager)    # update the locations inside the json
         self.__fillLocationTree()
 
         # set the version to the label

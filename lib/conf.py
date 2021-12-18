@@ -1,15 +1,51 @@
 import json
+from json.decoder import JSONDecodeError
 import logging
 import random
-import lib.general as general
+import os, sys
 
-configDir = "config"
-locationDir= configDir + "/locations.json"
-settingDir = configDir + "/settings.json"
+sys.path.append("..")
+import lib.general as general
+import config.defaultConfig as defaultConfig
+
+configDir = "~/.config/norsevpn"
+locationDir= os.path.abspath(os.path.expanduser(os.path.expandvars(configDir + "/locations.json"))) 
+settingDir = os.path.abspath(os.path.expanduser(os.path.expandvars(configDir + "/settings.json"))) 
+
 
 ##
 # @brief    Class to handle the configurations
 class configManager():
+
+    defaultSetting = {
+            "autoconnect": False,
+            "cybersec": False,
+            "dns": False,
+            "firewall": False,
+            "ipv6": False,
+            "killswitch": False,
+            "notify": False,
+            "obfuscate": False,
+            "protocol": "UDP",
+            "selected_city": "Budapest",
+            "selected_country": "Hungary",
+            "technology": "OpenVPN"
+            }
+
+    def initializeConfig(self):
+        print("Init config")
+        # check if the config is not initalized yest on system
+        if(not os.path.isfile(locationDir)):
+            # create folder
+            os.popen("mkdir " + configDir, 'r')
+            os.popen("touch " + settingDir, 'r')
+            os.popen("touch " + locationDir, 'r')
+            with open(settingDir, "w+") as f: 
+                f.seek(0)
+                json.dump(self.defaultSetting, f,  indent=4, sort_keys=True)
+                f.close()
+
+        return
 
     ## 
     # @public
@@ -42,7 +78,7 @@ class configManager():
         for cnt in cnties:
             cities = self.__getArr(self, "nordvpn cities " + str(cnt))
             cnties[cnt].append(cities)
-        with open(locationDir, "w") as jsonFile:
+        with open(locationDir, "w+") as jsonFile:
             json.dump(cnties, jsonFile, indent=4, sort_keys=True)
 
     ##
@@ -72,14 +108,16 @@ class configManager():
     # @param strVal
     # @returns  string  Value of the wanted configuration
     def getConfig(self, strVal):
+        retVal = ""
         with open(settingDir, "r") as f:
             data = json.load(f)
             f.close()
         try:
-            return data[strVal]
+            retVal = data[strVal]
         except KeyError as err:
             logging.error("Config Key " + strVal + " not found")
-            return ""
+            retVal = ""
+        return retVal
 
     ## 
     # @public
