@@ -12,7 +12,7 @@ import lib.general as general
 
 # import ui
 from vizu.infoUI import Ui_Info
-import vizu.resources
+import vizu.vizu_resources
 
 ui_path = os.path.dirname(os.path.abspath(__file__))
 ##
@@ -49,7 +49,7 @@ class infoWindow(QWidget):
             data = htmlFile.readAll()
             codec = QtCore.QTextCodec.codecForHtml(data)
         htmlText = codec.toUnicode(data)
-        
+
         # parse the versions and more data into html file
         htmlText = htmlText.replace("{%NORSEVPN_VERSION%}", general.getGitLatestTag() )
         htmlText = htmlText.replace("{%NORSEVPN_GITHASH%}", general.getGitHashShort() )

@@ -6,7 +6,7 @@ source .venv/bin/activate
 
 # create resources file
 echo "Creating resources"
-pyrcc5 vizu/resources.qrc -o vizu/resources.py
+pyrcc5 vizu/vizu_resources.qrc -o vizu/vizu_resources.py
 
 # create python files of the ui files so they can be easier used as standalones
 echo "Create python file from the Qt ui files"
