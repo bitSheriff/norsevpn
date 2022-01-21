@@ -18,7 +18,6 @@ pip3 freeze > requirements.txt
 
 echo "Create the portable single execute file"
 pyinstaller norsevpn.py \
---onefile \
 --icon=doc/img/logo/norsevpn.ico \
 
 echo " <--- Exit vitual enviroment ----> "

@@ -10,6 +10,8 @@ from lib.conf import configManager
 from vizu.configWindow import configWindow
 from vizu.infoWindow import infoWindow
 import lib.general as general
+import vizu.vizu_resources
+
 
 # import ui
 from vizu.mainUI import Ui_NorseVPN
