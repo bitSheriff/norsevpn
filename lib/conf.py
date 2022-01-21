@@ -28,7 +28,9 @@ class configManager():
             "protocol": "UDP",
             "selected_city": "Vienna",
             "selected_country": "Austria",
-            "technology": "OpenVPN"
+            "technology": "OpenVPN",
+            "dns_list": [""],
+            "whitelist": [""]
             }
 
     def initializeConfig(self):
@@ -157,7 +159,48 @@ class configManager():
                 arr.append(x)
         return arr#
 
+    def __getConfigStream(self):
+        with open(settingDir, "r") as f:
+            data = json.load(f)
+            f.close()
+        return data
+
+    def __setConfigStream(self, stream):
+        with open(settingDir, "w+") as f: 
+            f.seek(0)
+            json.dump(stream, f,  indent=4, sort_keys=True)
+            f.close()
+        return
+
+
     def getRandomLocation(self):
         locations = self.getLocationDict(self)
         country, city = random.choice(list(locations.items()))
         return country, city
+
+
+    def addDNSServer(self, server):
+        # load the whole configuration
+        config = self.__getConfigStream(self)
+        # add the server to the list
+        config["dns_list"].append(server)
+        # store the whole configuration again
+        self.__setConfigStream(self, config)
+        return
+    
+    def getDNSServer(self):
+        # load the whole configuration
+        config = self.__getConfigStream(self)
+        # return the dns server list
+        return config["dns_list"]
+
+    def removeDNSServer(self, server):
+        # load the whole configuration
+        config = self.__getConfigStream(self)
+        # remove the wanted server
+        config["dns_list"].remove(server)
+        # store the whole configuration again
+        self.__setConfigStream(self, config)
+        return
+
+

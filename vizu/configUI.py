@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'vizu/config1.ui'
+# Form implementation generated from reading ui file 'vizu/config.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -126,13 +126,23 @@ class Ui_Configuration(object):
         self.slid_dns.setPageStep(1)
         self.slid_dns.setOrientation(QtCore.Qt.Horizontal)
         self.slid_dns.setObjectName("slid_dns")
+        self.line_dns = QtWidgets.QLineEdit(self.dns)
+        self.line_dns.setGeometry(QtCore.QRect(10, 180, 131, 25))
+        self.line_dns.setMaxLength(15)
+        self.line_dns.setObjectName("line_dns")
+        self.dns_delete = QtWidgets.QPushButton(self.dns)
+        self.dns_delete.setGeometry(QtCore.QRect(290, 180, 83, 25))
+        self.dns_delete.setObjectName("dns_delete")
+        self.list_dns = QtWidgets.QListWidget(self.dns)
+        self.list_dns.setGeometry(QtCore.QRect(15, 31, 351, 141))
+        self.list_dns.setObjectName("list_dns")
         self.tabWidget.addTab(self.dns, "")
         self.whitelist = QtWidgets.QWidget()
         self.whitelist.setObjectName("whitelist")
         self.tabWidget.addTab(self.whitelist, "")
 
         self.retranslateUi(Configuration)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(Configuration)
 
     def retranslateUi(self, Configuration):
@@ -155,6 +165,8 @@ class Ui_Configuration(object):
         self.label_protocol.setText(_translate("Configuration", "Protocol"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.config), _translate("Configuration", "Configuration"))
         self.label_dns.setText(_translate("Configuration", "Custom DNS"))
+        self.line_dns.setText(_translate("Configuration", "255.255.255.255"))
+        self.dns_delete.setText(_translate("Configuration", "Del"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.dns), _translate("Configuration", "DNS"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.whitelist), _translate("Configuration", "Whitelist"))
 

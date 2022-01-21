@@ -2,7 +2,7 @@ import os
 import sys
 import logging
 from PyQt5.QtWidgets import QLabel, QMessageBox, QVBoxLayout, QWidget, QCheckBox
-from PyQt5 import QtCore, uic
+from PyQt5 import QtCore, uic, QtGui
 
 sys.path.append("..")
 from lib.conf import configManager
@@ -43,6 +43,9 @@ class configWindow(QWidget):
         # combobox setup
         self.ui.cb_protocol.addItems(["TCP", "UDP"])
         self.ui.cb_technology.addItems(["OpenVPN", "NordLynx"])
+        # dns setup
+        self.ui.line_dns.returnPressed.connect(self.__enterDNS)
+        self.ui.dns_delete.clicked.connect(self.__removeDNS)
 
     ## 
     # @public
@@ -54,6 +57,23 @@ class configWindow(QWidget):
         logging.info("Show Config window")
         self.loadConfig()
         self.show()
+
+    def __loadDNS(self):
+        dnsIsActive = configManager.getConfig(configManager, "dns")
+        # disable line edit and list view if custom dns is disabled
+        self.ui.line_dns.setDisabled(not dnsIsActive)
+        self.ui.list_dns.setDisabled(not dnsIsActive)
+        self.ui.dns_delete.setDisabled(not dnsIsActive)
+
+        # set the server list
+        servers = configManager.getDNSServer(configManager)
+        self.ui.list_dns.clear() # clear whole list before updating it
+        self.ui.list_dns.addItems(servers)
+        return
+
+    def __loadWhitelist(self):
+        return
+
 
     ##
     # @public 
@@ -79,6 +99,9 @@ class configWindow(QWidget):
         if index_tech >= 0:
             self.ui.cb_protocol.setCurrentIndex(index_tech)
 
+        # load the dns configuration & whitelist
+        self.__loadDNS()
+        self.__loadWhitelist()
 
         return
 
@@ -120,6 +143,11 @@ class configWindow(QWidget):
         configManager.setConfig( configManager,
                                  "technology",
                                  self.ui.cb_technology.currentText())
+
+        # reload the dns and whitelist configurations
+        self.__loadDNS()
+        self.__loadWhitelist()
+
         return
 
     ##
@@ -198,3 +226,20 @@ class configWindow(QWidget):
         self.ui.cb_technology.setDisabled(disabled)
 
         self.ui.btn_save.setDisabled(disabled)
+
+
+    def __enterDNS(self):
+        # set the text to the config manager
+        configManager.addDNSServer(configManager, self.ui.line_dns.text())
+        # load dns again to show the new server in the list
+        self.__loadDNS()
+        return
+
+    def __removeDNS(self):
+        # get the text of the selected item and remove it from the list
+        item = self.ui.list_dns.currentItem()
+        if item is not None:
+            configManager.removeDNSServer(configManager, item.text())
+        # load dns again to show the server list
+        self.__loadDNS()
+        return

@@ -2,6 +2,7 @@
     "autoconnect": false,
     "cybersec": false,
     "dns": false,
+    "dns_list": [""],
     "firewall": false,
     "ipv6": false,
     "killswitch": false,
@@ -10,5 +11,6 @@
     "protocol": "UDP",
     "selected_city": "Budapest",
     "selected_country": "Hungary",
-    "technology": "OpenVPN"
+    "technology": "OpenVPN",
+    "whitelist": [""]
 }
