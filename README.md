@@ -71,11 +71,14 @@ Current available configurations:
   - OpenVPN
   - [NordLynx](https://nordvpn.com/blog/nordlynx-protocol-wireguard/)
 
-These configuration parameters get stored inside a json-file to store them for the next application start.
-
 > For further information please read more at the [archlinux-wiki](https://wiki.archlinux.org/title/NordVPN#Settings).
 
-
+These configuration parameters get stored inside a json-file to store them for the next application start.
+This json file, beside the other for the locations, are stored in the following folder
+```
+~/.config/norsevpn
+```
+The application can be set to default settings if this folder in the *HOME* directory is deleted.
 
 If you want to close the window it is asked if you want to save the settings.
 > **_NOTE:_**

@@ -6,8 +6,9 @@
     "ipv6": false,
     "killswitch": false,
     "notify": false,
-    "obfuscate": false,
+    "obfuscate": true,
     "protocol": "UDP",
     "selected_city": "Budapest",
-    "selected_country": "Hungary"
+    "selected_country": "Hungary",
+    "technology": "OpenVPN"
 }

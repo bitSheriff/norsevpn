@@ -1,0 +1,6 @@
+<RCC>
+    <qresource>
+        <file>info.html</file>
+        <file>icons/white_info.svg</file>
+    </qresource>
+</RCC>
