@@ -19,7 +19,6 @@ class configManager():
     defaultSetting = {
             "autoconnect": False,
             "cybersec": False,
-            "dns": False,
             "firewall": False,
             "ipv6": False,
             "killswitch": False,

@@ -65,7 +65,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="config">
     <attribute name="title">
@@ -382,38 +382,6 @@
     <attribute name="title">
      <string>DNS</string>
     </attribute>
-    <widget class="QLabel" name="label_dns">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>10</y>
-       <width>101</width>
-       <height>17</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Custom DNS</string>
-     </property>
-    </widget>
-    <widget class="QSlider" name="slid_dns">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>31</width>
-       <height>16</height>
-      </rect>
-     </property>
-     <property name="maximum">
-      <number>1</number>
-     </property>
-     <property name="pageStep">
-      <number>1</number>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
     <widget class="QLineEdit" name="line_dns">
      <property name="geometry">
       <rect>
@@ -447,9 +415,9 @@
      <property name="geometry">
       <rect>
        <x>15</x>
-       <y>31</y>
+       <y>11</y>
        <width>351</width>
-       <height>141</height>
+       <height>161</height>
       </rect>
      </property>
     </widget>

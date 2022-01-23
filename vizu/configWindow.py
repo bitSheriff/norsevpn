@@ -41,7 +41,6 @@ class configWindow(QWidget):
         self.ui.slid_notify.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.ui.slid_notify))
         self.ui.slid_autoConnect.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.ui.slid_autoConnect))
         self.ui.slid_ipv6.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.ui.slid_ipv6))
-        self.ui.slid_dns.sliderPressed.connect(lambda: self.__toggleSlider(slid=self.ui.slid_dns))
         # button setup
         self.ui.btn_close.clicked.connect(self.__closeBtn)
         self.ui.btn_save.clicked.connect(self.saveConfig)
@@ -66,12 +65,6 @@ class configWindow(QWidget):
         self.show()
 
     def __loadDNS(self):
-        dnsIsActive = configManager.getConfig(configManager, "dns")
-        # disable line edit and list view if custom dns is disabled
-        self.ui.line_dns.setDisabled(not dnsIsActive)
-        self.ui.list_dns.setDisabled(not dnsIsActive)
-        self.ui.dns_delete.setDisabled(not dnsIsActive)
-
         # set the server list
         servers = configManager.getDNSServer(configManager)
         self.ui.list_dns.clear() # clear whole list before updating it
@@ -97,7 +90,6 @@ class configWindow(QWidget):
         self.ui.slid_notify.setValue(configManager.getConfig(configManager, "notify"))
         self.ui.slid_autoConnect.setValue(configManager.getConfig(configManager, "autoconnect"))
         self.ui.slid_ipv6.setValue(configManager.getConfig(configManager, "ipv6"))
-        self.ui.slid_dns.setValue(configManager.getConfig(configManager, "dns"))
         # set the selected item in the comboboxes
         index_protocol = self.ui.cb_protocol.findText(configManager.getConfig(configManager, "protocol"), QtCore.Qt.MatchFixedString)
         if index_protocol >= 0:
@@ -141,9 +133,6 @@ class configWindow(QWidget):
         configManager.setConfig( configManager,
                                  "ipv6",
                                  self.__getSetting(self.ui.slid_ipv6.value()) )
-        configManager.setConfig( configManager,
-                                 "dns",
-                                 self.__getSetting(self.ui.slid_dns.value()) )
         configManager.setConfig( configManager,
                                  "protocol",
                                  self.ui.cb_protocol.currentText())
@@ -227,7 +216,6 @@ class configWindow(QWidget):
         self.ui.slid_notify.setDisabled(disabled)
         self.ui.slid_autoConnect.setDisabled(disabled)
         self.ui.slid_ipv6.setDisabled(disabled)
-        self.ui.slid_dns.setDisabled(disabled)
 
         self.ui.cb_protocol.setDisabled(disabled)
         self.ui.cb_technology.setDisabled(disabled)
@@ -236,6 +224,10 @@ class configWindow(QWidget):
 
 
     def __enterDNS(self):
+        # check id less than 2 servers are already set
+        if self.ui.list_dns.count() > 2:
+            logging.info("already more than 3 dns servers set")
+            return
         # get the raw text from the lineEdit
         rawText = self.ui.line_dns.text()
         # search the raw text for the regex expression

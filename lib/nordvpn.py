@@ -78,9 +78,11 @@ class nordvpn():
         self.__setSetting(self, "obfuscate", configManager.getConfig(configManager, "obfuscate"))
         self.__setSetting(self, "notify", configManager.getConfig(configManager, "notify"))
         self.__setSetting(self, "ipv6", configManager.getConfig(configManager, "ipv6"))
-        self.__setSetting(self, "dns", configManager.getConfig(configManager, "dns"))
         self.__setSetting(self, "protocol", configManager.getConfig(configManager, "protocol"))
         self.__setSetting(self, "technology", configManager.getConfig(configManager, "technology"))
+
+        # set dns servers
+        self.__setDNSServers(self, configManager.getDNSServer(configManager))
 
     def __setDefaultSettings(self):
         self.__setSetting(self, "firewall", True)
@@ -98,3 +100,18 @@ class nordvpn():
 
     def getVersion(self):
         return general.getOSString("nordvpn --version")
+
+    def __setDNSServers(self, servers):
+        if not servers:
+            # no dns servers, disable custom dns
+            logging.info("no custom dns server configured")
+            self.__setSetting(self, "dns", False)
+        else:
+            # iterate through the servers and set them
+            logging.info("custom dns servers:")
+            serversCmd = ""
+            for serv in servers:
+                serversCmd = serversCmd + serv + " "
+            dnsCmd = "nordvpn set dns " + serversCmd
+            logging.info(dnsCmd)
+            logging.info(general.getOSString(dnsCmd))
