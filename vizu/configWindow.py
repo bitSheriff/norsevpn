@@ -1,5 +1,5 @@
 import os
-import sys
+import sys, re
 import logging
 from PyQt5.QtWidgets import QLabel, QMessageBox, QVBoxLayout, QWidget, QCheckBox
 from PyQt5 import QtCore, uic, QtGui
@@ -10,6 +10,11 @@ from lib.conf import configManager
 
 # import ui
 from vizu.configUI import Ui_Configuration
+
+
+# DEFINES
+REGEX_PATTERN_DNS = r'\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b'
+
 
 ##
 # @brief Class for the Configuration Window
@@ -229,10 +234,16 @@ class configWindow(QWidget):
 
 
     def __enterDNS(self):
-        # set the text to the config manager
-        configManager.addDNSServer(configManager, self.ui.line_dns.text())
-        # load dns again to show the new server in the list
-        self.__loadDNS()
+        # get the raw text from the lineEdit
+        rawText = self.ui.line_dns.text()
+        # search the raw text for the regex expression
+        reg = re.search(REGEX_PATTERN_DNS, rawText)
+        # check if a ipv4 address was found
+        if reg:
+            # set the text to the config manager
+            configManager.addDNSServer(configManager, reg.group(0))
+            # load dns again to show the new server in the list
+            self.__loadDNS()
         return
 
     def __removeDNS(self):
