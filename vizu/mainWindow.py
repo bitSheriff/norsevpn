@@ -209,7 +209,7 @@ class mainWindow(QtWidgets.QMainWindow):
         self.ui.tree_location.insertTopLevelItems(0, items)
 
     def __locationSelection(self):
-        item = self.tree_location.currentItem()
+        item = self.ui.tree_location.currentItem()
         par = item.parent()
 
         if type(par) is not QTreeWidgetItem:
