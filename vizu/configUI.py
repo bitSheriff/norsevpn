@@ -142,7 +142,7 @@ class Ui_Configuration(object):
         self.tabWidget.addTab(self.whitelist, "")
 
         self.retranslateUi(Configuration)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Configuration)
 
     def retranslateUi(self, Configuration):

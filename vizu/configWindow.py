@@ -30,7 +30,7 @@ class configWindow(QWidget):
         self.ui = Ui_Configuration()
         self.ui.setupUi(self)
 
-        # inernal flags and vars
+        # internal flags and vars
         self.isDisabled = True
 
         # simulate toggleSwitch like handling
@@ -51,6 +51,8 @@ class configWindow(QWidget):
         # dns setup
         self.ui.line_dns.returnPressed.connect(self.__enterDNS)
         self.ui.dns_delete.clicked.connect(self.__removeDNS)
+        # set default tab
+        self.ui.tabWidget.setCurrentWidget(self.ui.tabWidget.findChild(QWidget, "config"))
 
     ## 
     # @public
