@@ -48,8 +48,9 @@ class nordvpn():
     # @param    cty    Wanted city
     def connect(self, cnt="", cty=""):
         self.__setSettings(self)        # set the user wanted settings
-        logging.info("nordvpn c " + cnt + " " + cty)
-        logging.info(general.getOSString("nordvpn c " + cnt + "" + cty))
+        connect = "nordvpn c " + cnt + " " + cty
+        logging.info(repr(connect))
+        logging.info(general.getOSString(connect))
         return
         
 

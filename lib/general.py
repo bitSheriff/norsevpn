@@ -1,4 +1,5 @@
     
+from dataclasses import replace
 import logging
 import os, sys, string, subprocess
 
@@ -10,6 +11,7 @@ import os, sys, string, subprocess
 # @param cmnd   Command which is executed
 # @returns      Returns the string which the OS returned on the stdout
 def getOSString(cmnd):
+    cmnd = cmnd.replace("\n","")
     call = os.popen(cmnd, 'r')
     return call.read()
 
