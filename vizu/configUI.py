@@ -165,7 +165,7 @@ class Ui_Configuration(object):
         self.label_protocol.setText(_translate("Configuration", "Protocol"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.config), _translate("Configuration", "Configuration"))
         self.label_dns.setText(_translate("Configuration", "Custom DNS"))
-        self.line_dns.setText(_translate("Configuration", "255.255.255.255"))
+        self.line_dns.setText(_translate("Configuration", "8.8.8.8"))
         self.dns_delete.setText(_translate("Configuration", "Del"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.dns), _translate("Configuration", "DNS"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.whitelist), _translate("Configuration", "Whitelist"))
