@@ -57,7 +57,8 @@ class configWindow(QWidget):
     ##
     # @private
     # @brief Initialize Message Box
-    # @details 
+    # @details This internal method creates a message box for the DNS failure.
+    #          If another server could not be entered this message box is shown.
     def __initMessageBox(self):
         #create Message box
         self.dnsWarningMsgBox = QMessageBox()
