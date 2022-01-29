@@ -13,6 +13,9 @@ from vizu.configUI import Ui_Configuration
 
 
 # DEFINES
+##
+# @brief    DNS IP Address Regex
+# @details  This regex string is used to filter if the entered IP address is in a valid format.
 REGEX_PATTERN_DNS = r'\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b'
 
 
