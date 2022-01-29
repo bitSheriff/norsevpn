@@ -52,6 +52,21 @@ class configWindow(QWidget):
         self.ui.dns_delete.clicked.connect(self.__removeDNS)
         # set default tab
         self.ui.tabWidget.setCurrentWidget(self.ui.tabWidget.findChild(QWidget, "config"))
+        self.__initMessageBox()
+
+    ##
+    # @private
+    # @brief Initialize Message Box
+    # @details 
+    def __initMessageBox(self):
+        #create Message box
+        self.dnsWarningMsgBox = QMessageBox()
+        self.dnsWarningMsgBox.setIcon(QMessageBox.Warning)
+        self.dnsWarningMsgBox.setWindowTitle("Configuration Warning")
+        self.dnsWarningMsgBox.setText("DNS list full")
+        self.dnsWarningMsgBox.setInformativeText("Only up to 3 dns servers can be configured. \nPlease remove one if you want to add another.")
+        self.dnsWarningMsgBox.setStandardButtons(QMessageBox.Close)
+
 
     ## 
     # @public
@@ -227,6 +242,8 @@ class configWindow(QWidget):
         # check id less than 2 servers are already set
         if self.ui.list_dns.count() > 2:
             logging.info("already more than 3 dns servers set")
+            # show message box why action failed
+            self.dnsWarningMsgBox.show()
             return
         # get the raw text from the lineEdit
         rawText = self.ui.line_dns.text()
@@ -247,4 +264,4 @@ class configWindow(QWidget):
             configManager.removeDNSServer(configManager, item.text())
         # load dns again to show the server list
         self.__loadDNS()
-        return
+        return  
